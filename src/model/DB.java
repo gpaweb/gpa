@@ -21,6 +21,7 @@ public class DB {
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, userName, dbPassword);
 			System.out.println("Connection establish");
+			Statement stmt = conn.createStatement();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
