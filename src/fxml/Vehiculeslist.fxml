@@ -127,8 +127,19 @@
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </TextField>
+                              <Label text="Est vendu" GridPane.columnIndex="5">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ToggleButton fx:id="estVenduToggle" mnemonicParsing="false" onAction="#EstVenduClick" text="Non" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ToggleButton>
                            </children>
                            <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
@@ -142,19 +153,19 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <TableView layoutX="10.0" layoutY="183.0" minHeight="300.0" minWidth="200.0" prefHeight="300.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="183.0">
-                          <columns>
+                        <TableView fx:id="tableVehicule" layoutX="10.0" layoutY="183.0" minHeight="300.0" minWidth="200.0" prefHeight="300.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="183.0">
+                         <columns>
                             <TableColumn minWidth="33.0" prefWidth="33.0" />
-                            <TableColumn maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="No. de stock" />
-                              <TableColumn maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="No. de série" />
-                              <TableColumn maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Année" />
-                              <TableColumn maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Marque" />
-                              <TableColumn maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Modèle" />
-                              <TableColumn maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Couleur" />
-                              <TableColumn maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Transmission" />
-                              <TableColumn maxWidth="-1.0" minWidth="122.0" prefWidth="121.0" text="Kilométrage" />
+                            <TableColumn fx:id="noStockCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="No. de stock" />
+                              <TableColumn fx:id="noSerieCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="No. de série" />
+                              <TableColumn fx:id="anneeCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Année" />
+                              <TableColumn fx:id="marqueCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Marque" />
+                              <TableColumn fx:id="modeleCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Modèle" />
+                              <TableColumn fx:id="couleurCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Couleur" />
+                              <TableColumn fx:id="transmissionCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Transmission" />
+                              <TableColumn fx:id="kilometrageCol" maxWidth="-1.0" minWidth="122.0" prefWidth="121.0" text="Kilométrage" />
                           </columns>
-                        </TableView>
+                          </TableView>
                         <Pane layoutX="10.0" layoutY="163.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="163.0">
                            <children>
                               <Label layoutY="3.0" text="Liste de véhicules">
@@ -510,6 +521,5 @@
         </tabs>
       </TabPane>
       <Label layoutX="14.0" layoutY="14.0" text="Gestion de parc automobile" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-      <Button fx:id="btnTest" layoutX="313.0" layoutY="57.0" mnemonicParsing="false" onAction="#testDb" text="Button" />
    </children>
 </AnchorPane>
