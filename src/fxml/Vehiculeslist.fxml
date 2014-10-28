@@ -520,6 +520,19 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Label layoutX="14.0" layoutY="14.0" text="Gestion de parc automobile" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Label layoutX="14.0" layoutY="52.0" text="Gestion de parc automobile" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="52.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Fichier">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Préférence" />
+              <MenuItem mnemonicParsing="false" text="Quitter" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>
