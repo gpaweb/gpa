@@ -13,9 +13,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.DBClass;
 import model.Vehicule;
 
 public class VehiculeListController implements Initializable {
@@ -42,19 +42,26 @@ public class VehiculeListController implements Initializable {
 	private ObservableList<Vehicule> listAllVehicule;
 	@FXML
 	private ToggleButton estVenduToggle;
+	@FXML
+	private TextField marqueTextField;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-
 		try {
-			listAllVehicule = Vehicule.listAllVehicule();
+			listAllVehicule = Vehicule.listeDeVehicule("");
 			fillVehiculeTable(listAllVehicule);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-
+	}
+	
+	public void marqueChange(){
+		try {
+			listAllVehicule = Vehicule.listeDeVehicule("Select * FROM Vehicules WHERE fldMarque LIKE '%"+marqueTextField.getText()+"%'");
+			fillVehiculeTable(listAllVehicule);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void EstVenduClick(){
@@ -69,6 +76,7 @@ public class VehiculeListController implements Initializable {
 	public void fillVehiculeTable(ObservableList<Vehicule> listeVehicule){
 		/*assert tableVehicule != null : "fx:id=\"tableVehicule\" was not injected: check your FXML file 'Véhiculelist.fxml'.";
 		*/
+		System.out.println("Nombre d'éléments :"+listeVehicule.size());
 		try {
 			noStockCol.setCellValueFactory(new PropertyValueFactory<Vehicule,String>("stockNumber"));
 			noSerieCol.setCellValueFactory(new PropertyValueFactory<Vehicule,String>("noSerie"));

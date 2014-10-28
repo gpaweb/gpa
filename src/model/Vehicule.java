@@ -1,17 +1,16 @@
 package model;
 
 import java.math.BigDecimal;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Currency;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
 
 public class Vehicule {
 	private String noSerie;
@@ -20,14 +19,14 @@ public class Vehicule {
 	private int annee;
 	private String couleur;
 	private String typeVendeur;
-	private String dateAchat;
+	private Date dateAchat;
 	private String noVendeur;
 	private boolean estVendu;
 	private BigDecimal prixVente;
 	private String typeAcheteur;
 	private String noAcheteur;
 	private BigDecimal prixAcheteur;
-	private String dateVente;
+	private Date dateVente;
 	private boolean aEuEchange;
 	private boolean aEuEntretien;
 	private String transmission;
@@ -44,10 +43,10 @@ public class Vehicule {
 	}
 
 	public Vehicule(String noSerie, String marque, String modele, int annee,
-			String couleur, String typeVendeur, String dateAchat,
+			String couleur, String typeVendeur, Date dateAchat,
 			String noVendeur, boolean estVendu, BigDecimal prixVente,
 			String typeAcheteur, String noAcheteur, BigDecimal prixAcheteur,
-			String dateVente, boolean aEuEchange, boolean aEuEntretien,
+			Date dateVente, boolean aEuEchange, boolean aEuEntretien,
 			String transmission, String noClef, int kilometrage,
 			String cilyndre, String stockNumber, String cheque,
 			BigDecimal prixClient, boolean venteAvecContrat) {
@@ -127,11 +126,11 @@ public class Vehicule {
 		this.typeVendeur = typeVendeur;
 	}
 
-	public String getDateAchat() {
+	public Date getDateAchat() {
 		return dateAchat;
 	}
 
-	public void setDateAchat(String dateAchat) {
+	public void setDateAchat(Date dateAchat) {
 		this.dateAchat = dateAchat;
 	}
 
@@ -183,12 +182,12 @@ public class Vehicule {
 		this.prixAcheteur = prixAcheteur;
 	}
 
-	public String getDateVente() {
+	public Date getDateVente() {
 		return dateVente;
 	}
 
-	public void setDateVente(String dateVente) {
-		this.dateVente = dateVente;
+	public void setDateVente(Date dateVente2) {
+		this.dateVente = dateVente2;
 	}
 
 	public boolean isaEuEchange() {
@@ -271,14 +270,14 @@ public class Vehicule {
 		this.venteAvecContrat = venteAvecContrat;
 	}
 
-	public static ObservableList<Vehicule> listAllVehicule() throws SQLException {
+	public static ObservableList<Vehicule> listeDeVehicule(String sql) throws SQLException {
 		ObservableList<Vehicule> vehicules = FXCollections.observableArrayList();
 
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		// JDBC driver name and database URL
 		final String driver = "com.mysql.jdbc.Driver";
-		final String url = "jdbc:mysql://localhost/gpa2k15";
+		final String url = "jdbc:mysql://localhost/gpa2k15?zeroDateTimeBehavior=convertToNull";
 		// Database credentials
 		final String dbName = "gpa2k15";
 		final String userName = "root";
@@ -299,8 +298,13 @@ public class Vehicule {
 			// STEP 4: Executing a query
 			System.out.println("Creating statement");
 			stmt = conn.createStatement();
-			String sql;
-			sql = "Select * FROM Vehicules";
+			//String sql;
+			if(sql==""){
+				sql = "Select * FROM Vehicules";
+			} else {
+				
+			}
+			System.out.println("SQL :"+sql);
 			rs = stmt.executeQuery(sql);
 
 			// STEP 5: Extract data from result set
@@ -320,7 +324,7 @@ public class Vehicule {
 				vehicule.setCouleur(couleur);
 				String typeVendeur = rs.getString("fldTypeVendeur");
 				vehicule.setTypeVendeur(typeVendeur);
-				String dateAchat = rs.getString("fldDateAchat");
+				Date dateAchat = rs.getDate("fldDateAchat");
 				vehicule.setDateAchat(dateAchat);
 				String noVendeur = rs.getString("fldNovendeur");
 				vehicule.setNoVendeur(noVendeur);
@@ -334,7 +338,7 @@ public class Vehicule {
 				vehicule.setNoAcheteur(noAcheteur);
 				BigDecimal prixAchat = rs.getBigDecimal("fldPrixAchat");
 				vehicule.setPrixAcheteur(prixAchat);
-				String dateVente = rs.getString("fldDateVente");
+				Date dateVente = rs.getDate("fldDateVente");
 				vehicule.setDateVente(dateVente);
 				boolean aEuEchange = rs.getBoolean("fldEchange");
 				vehicule.setaEuEchange(aEuEchange);
