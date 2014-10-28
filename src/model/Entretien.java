@@ -103,8 +103,8 @@ public class Entretien {
 		final String url = "jdbc:mysql://localhost/gpa2k15?zeroDateTimeBehavior=convertToNull";
 		// Database credentials
 		final String dbName = "gpa2k15";
-		final String userName = "root";
-		final String dbPassword = "passwd12";
+		final String userName = "";
+		final String dbPassword = "";
 
 		Connection conn = null;
 		java.sql.Statement stmt = null;
