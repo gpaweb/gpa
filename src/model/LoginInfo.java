@@ -1,12 +1,12 @@
 package model;
 
 public final class LoginInfo {
-	
+
 	private static String userName;
 	private static String password;
-	
+
 	private LoginInfo() {
-		
+
 	}
 
 	public static String getUserName() {
@@ -24,5 +24,5 @@ public final class LoginInfo {
 	public static void setPassword(String password) {
 		LoginInfo.password = password;
 	}
-	
+
 }

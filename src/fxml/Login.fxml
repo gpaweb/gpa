@@ -28,7 +28,7 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="okButton" mnemonicParsing="false" onAction="#OkPressed" text="Ok" GridPane.columnIndex="2" GridPane.halignment="LEFT">
+                  <Button fx:id="okButton" defaultButton="true" mnemonicParsing="false" onAction="#OkPressed" text="Ok" GridPane.columnIndex="2" GridPane.halignment="LEFT">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
