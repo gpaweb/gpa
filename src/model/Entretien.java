@@ -95,29 +95,18 @@ public class Entretien {
 
 	public static ObservableList<Entretien> listeDeEtretien(String sql) throws SQLException {
 		ObservableList<Entretien> entretiens = FXCollections.observableArrayList();
-		
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
-		// JDBC driver name and database URL
-		final String driver = "com.mysql.jdbc.Driver";
-		final String url = "jdbc:mysql://localhost/gpa2k15?zeroDateTimeBehavior=convertToNull";
-		// Database credentials
-		final String dbName = "gpa2k15";
-		final String userName = "";
-		final String dbPassword = "";
-
 		Connection conn = null;
 		java.sql.Statement stmt = null;
 		ResultSet rs = null;
 
 		try{
 			// STEP 2: Register JDBC driver
-			Class.forName(driver);
+			Class.forName(Database.getDriver());
 
 			// STEP 3: Open a connection
 			System.out.println("Connecting to database...");
 			
-			conn = DriverManager.getConnection(url, userName, dbPassword);
+			conn = DriverManager.getConnection(Database.getUrl(), LoginInfo.getUserName(), LoginInfo.getPassword());
 
 			// STEP 4: Executing a query
 			System.out.println("Creating statement");
