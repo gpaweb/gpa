@@ -1,21 +1,18 @@
 package controller;
 
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Vehicule;
 
@@ -53,7 +50,7 @@ public class VehiculeListController implements Initializable {
 	@FXML
 	private TextField modeleTextField;
 	@FXML
-	private ToggleButton estVenduToggle;
+	private ComboBox estVenduCombo;
 	@FXML
 	private TextField couleurTextField;
 	@FXML
@@ -69,6 +66,30 @@ public class VehiculeListController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		transmissionCombo.getItems().addAll("Tous", "Automatique", "Manuelle");
+		transmissionCombo.setValue("Tous");
+
+		transmissionCombo.valueProperty().addListener(
+				new ChangeListener<String>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						RechercheChange();
+					}
+				});
+
+		estVenduCombo.getItems().addAll("Tous", "Oui", "Non");
+		estVenduCombo.setValue("Tous");
+		estVenduCombo.valueProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable,
+					String oldValue, String newValue) {
+				RechercheChange();
+			}
+		});
 		try {
 			listAllVehicule = Vehicule.listeDeVehicule("");
 			fillVehiculeTable(listAllVehicule);
@@ -78,22 +99,13 @@ public class VehiculeListController implements Initializable {
 		}
 	}
 
-	public void marqueChange() {
+	public void RechercheChange() {
 		try {
 			listAllVehicule = Vehicule
-					.listeDeVehicule("Select * FROM Vehicules WHERE fldMarque LIKE '%"
-							+ marqueTextField.getText() + "%'");
+					.listeDeVehicule(createSQLRequestForVehicule());
 			fillVehiculeTable(listAllVehicule);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-	}
-
-	public void EstVenduClick() {
-		if (estVenduToggle.getText() == "Oui") {
-			estVenduToggle.setText("Non");
-		} else {
-			estVenduToggle.setText("Oui");
 		}
 	}
 
@@ -143,7 +155,7 @@ public class VehiculeListController implements Initializable {
 		String sqlRq = "SELECT * FROM Vehicules";
 		boolean premierElementRencontre = false;
 
-		if (noStockTextField.getText() != "") {
+		if (!noStockTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldStockNumber LIKE '%"
@@ -154,7 +166,7 @@ public class VehiculeListController implements Initializable {
 			}
 		}
 
-		if (noSerieTextField.getText() != "") {
+		if (!noSerieTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldNoSerie LIKE '%"
@@ -165,56 +177,64 @@ public class VehiculeListController implements Initializable {
 			}
 		}
 
-		if (anneeFabTextField.getText() != "") {
+		if (!anneeFabTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
-				sqlRq += "WHERE fldAnnee LIKE '%" + anneeFabTextField.getText()
-						+ "%'";
+				sqlRq += " WHERE fldAnnee LIKE '%"
+						+ anneeFabTextField.getText() + "%'";
 			} else {
-				sqlRq += "AND fldAnnee LIKE '%" + anneeFabTextField.getText()
+				sqlRq += " AND fldAnnee LIKE '%" + anneeFabTextField.getText()
 						+ "%'";
 			}
 		}
 
-		if (marqueTextField.getText() != "") {
+		if (!marqueTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
-				sqlRq += "WHERE fldMarque LIKE '%" + marqueTextField.getText()
+				sqlRq += " WHERE fldMarque LIKE '%" + marqueTextField.getText()
 						+ "%'";
 			} else {
-				sqlRq += "AND fldMarque LIKE '%" + marqueTextField.getText()
-						+ "%'";
-			}
-		}
-
-		if (modeleTextField.getText() != "") {
-			if (premierElementRencontre == false) {
-				premierElementRencontre = true;
-				sqlRq += "WHERE fldModele LIKE '%" + modeleTextField.getText()
-						+ "%'";
-			} else {
-				sqlRq += "AND fldModele LIKE '%" + modeleTextField.getText()
+				sqlRq += " AND fldMarque LIKE '%" + marqueTextField.getText()
 						+ "%'";
 			}
 		}
 
-		if (estVenduToggle.getText() == "Oui") {
+		if (!modeleTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
-				sqlRq += " WHERE fldVente = 1";
+				sqlRq += " WHERE fldModele LIKE '%" + modeleTextField.getText()
+						+ "%'";
 			} else {
-				sqlRq += " AND fldVente = 1";
-			}
-		} else {
-			if (premierElementRencontre == false) {
-				premierElementRencontre = true;
-				sqlRq += " WHERE fldVente = 0";
-			} else {
-				sqlRq += " AND fldVente = 0";
+				sqlRq += " AND fldModele LIKE '%" + modeleTextField.getText()
+						+ "%'";
 			}
 		}
 
-		if (couleurTextField.getText() != "") {
+		if (!estVenduCombo.getValue().equals("Tous")) {
+			if (premierElementRencontre == false) {
+				premierElementRencontre = true;
+				switch (estVenduCombo.getValue().toString()) {
+				case "Oui":
+					sqlRq += " WHERE fldVente = 1";
+					break;
+				case "Non":
+					sqlRq += " WHERE fldVente = 0";
+					break;
+				}
+
+			} else {
+				switch (estVenduCombo.getValue().toString()) {
+				case "Oui":
+					sqlRq += " AND fldVente = 1";
+					break;
+				case "Non":
+					sqlRq += " AND fldVente = 0";
+					break;
+				}
+			}
+		}
+
+		if (!couleurTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldNoPeinture LIKE '%"
@@ -225,7 +245,7 @@ public class VehiculeListController implements Initializable {
 			}
 		}
 		// À compléter, je ne trouve pas le champ dans la BD
-		if (noImmatricTextField.getText() != "") {
+		if (!noImmatricTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += "";
@@ -234,7 +254,18 @@ public class VehiculeListController implements Initializable {
 			}
 		}
 
-		if (transmissionCombo.getValue() != "") {
+		if (!transmissionCombo.getValue().equals("Tous")) {
+			if (premierElementRencontre == false) {
+				premierElementRencontre = true;
+				sqlRq += " WHERE fldTransmission LIKE '%"
+						+ transmissionCombo.getValue() + "%'";
+			} else {
+				sqlRq += " AND fldTransmission LIKE '%"
+						+ transmissionCombo.getValue() + "%'";
+			}
+		}
+
+		if (!cilyndreTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += "";
@@ -243,16 +274,7 @@ public class VehiculeListController implements Initializable {
 			}
 		}
 
-		if (cilyndreTextField.getText() != "") {
-			if (premierElementRencontre == false) {
-				premierElementRencontre = true;
-				sqlRq += "";
-			} else {
-				sqlRq += "";
-			}
-		}
-
-		if (kilometrageDeTextField.getText() != "") {
+		if (!kilometrageDeTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldKilometrage >="
@@ -263,13 +285,13 @@ public class VehiculeListController implements Initializable {
 			}
 		}
 
-		if (kilometrageATextField.getText() != "") {
+		if (!kilometrageATextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldKilometrage <= "
 						+ kilometrageATextField.getText();
 			} else {
-				sqlRq += " WHERE fldKilometrage <="
+				sqlRq += " AND fldKilometrage <="
 						+ kilometrageATextField.getText();
 			}
 		}

@@ -34,7 +34,6 @@ public class LoginController implements Initializable {
 		LoginInfo.setUserName(userNameTextField.getText());
 		LoginInfo.setPassword(passwordTextField.getText());
 		Platform.runLater(new Runnable() {
-
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub

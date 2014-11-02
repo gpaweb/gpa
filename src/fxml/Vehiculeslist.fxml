@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
@@ -47,22 +48,22 @@
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="noStockTextField" GridPane.rowIndex="1">
+                              <TextField fx:id="noStockTextField" onAction="#RechercheChange" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="couleurTextField" GridPane.rowIndex="3">
+                              <TextField fx:id="couleurTextField" onAction="#RechercheChange" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="noSerieTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <TextField fx:id="noSerieTextField" onAction="#RechercheChange" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="noImmatricTextField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <TextField fx:id="noImmatricTextField" onAction="#RechercheChange" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
@@ -102,27 +103,27 @@
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </ComboBox>
-                              <TextField fx:id="anneeFabTextField" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <TextField fx:id="anneeFabTextField" onAction="#RechercheChange" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="marqueTextField" onAction="#marqueChange" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <TextField fx:id="marqueTextField" onAction="#RechercheChange" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="cilyndreTextField" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                              <TextField fx:id="cilyndreTextField" onAction="#RechercheChange" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="modeleTextField" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                              <TextField fx:id="modeleTextField" onAction="#RechercheChange" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="kilometrageDeTextField" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                              <TextField fx:id="kilometrageDeTextField" onAction="#RechercheChange" GridPane.columnIndex="4" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
@@ -132,21 +133,21 @@
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <ToggleButton fx:id="estVenduToggle" mnemonicParsing="false" onAction="#EstVenduClick" text="Non" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </ToggleButton>
                               <Label text="Kilométrage à" GridPane.columnIndex="5" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="kilometrageATextField" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                              <TextField fx:id="kilometrageATextField" onAction="#RechercheChange" GridPane.columnIndex="5" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </TextField>
+                              <ComboBox fx:id="estVenduCombo" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
                            </children>
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
@@ -204,6 +205,9 @@
                                        <HBox.margin>
                                           <Insets bottom="1.0" top="1.0" />
                                        </HBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </Label>
                                  </children>
                               </HBox>
@@ -224,6 +228,9 @@
                                        <HBox.margin>
                                           <Insets bottom="1.0" top="1.0" />
                                        </HBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </Label>
                                  </children>
                               </HBox>
