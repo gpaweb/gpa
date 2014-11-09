@@ -29,8 +29,12 @@ public class LoginController implements Initializable {
 		// TODO Auto-generated method stub
 
 	}
-
-	public void OkPressed(ActionEvent event) throws Exception {
+	
+	public void cancelPressed(){
+		System.exit(0);
+	}
+	
+	public void okPressed(ActionEvent event) throws Exception {
 		LoginInfo.setUserName(userNameTextField.getText());
 		LoginInfo.setPassword(passwordTextField.getText());
 		Platform.runLater(new Runnable() {
