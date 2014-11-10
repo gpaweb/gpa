@@ -9,547 +9,738 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="800.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VehiculeListController">
-   <children>
-      <TabPane prefHeight="768.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
-        <tabs>
-          <Tab text="Véhicules">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Pane layoutX="10.0" layoutY="4.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="4.0">
-                           <children>
-                              <Label layoutY="3.0" text="Filtres">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <GridPane layoutY="26.0" minHeight="115.0" minWidth="800.0" prefHeight="120.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                           <children>
-                              <Label text="No. de stock">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Couleur" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="No. série" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="No. immatriculation" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField fx:id="noStockTextField" onAction="#RechercheChange" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField fx:id="couleurTextField" onAction="#RechercheChange" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField fx:id="noSerieTextField" onAction="#RechercheChange" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField fx:id="noImmatricTextField" onAction="#RechercheChange" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <Label text="Année de fabrication" GridPane.columnIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Transmission" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Marque" GridPane.columnIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Modèle" GridPane.columnIndex="4">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Cilyndré" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Kilométrage de" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <ComboBox fx:id="transmissionCombo" prefWidth="200.0" promptText="Manuelle" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </ComboBox>
-                              <TextField fx:id="anneeFabTextField" onAction="#RechercheChange" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField fx:id="marqueTextField" onAction="#RechercheChange" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField fx:id="cilyndreTextField" onAction="#RechercheChange" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField fx:id="modeleTextField" onAction="#RechercheChange" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField fx:id="kilometrageDeTextField" onAction="#RechercheChange" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <Label text="Est vendu" GridPane.columnIndex="5">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Kilométrage à" GridPane.columnIndex="5" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField fx:id="kilometrageATextField" onAction="#RechercheChange" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <ComboBox fx:id="estVenduCombo" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </ComboBox>
-                           </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                        <TableView fx:id="tableVehicule" layoutX="10.0" layoutY="183.0" minHeight="300.0" minWidth="200.0" prefHeight="300.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="183.0">
-                         <columns>
-                            <TableColumn minWidth="33.0" prefWidth="33.0" />
-                            <TableColumn fx:id="noStockCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="No. de stock" />
-                              <TableColumn fx:id="noSerieCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="No. de série" />
-                              <TableColumn fx:id="anneeCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Année" />
-                              <TableColumn fx:id="marqueCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Marque" />
-                              <TableColumn fx:id="modeleCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Modèle" />
-                              <TableColumn fx:id="couleurCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Couleur" />
-                              <TableColumn fx:id="transmissionCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Transmission" />
-                              <TableColumn fx:id="kilometrageCol" maxWidth="-1.0" minWidth="122.0" prefWidth="121.0" text="Kilométrage" />
-                          </columns>
-                          </TableView>
-                        <Pane layoutX="10.0" layoutY="163.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="163.0">
-                           <children>
-                              <Label layoutY="3.0" text="Liste de véhicules">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Pane layoutX="10.0" layoutY="483.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="483.0">
-                           <children>
-                              <HBox layoutX="7.0" layoutY="2.0">
-                                 <children>
-                                    <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/add.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Label layoutX="27.0" layoutY="3.0" text="Ajouter un véhicule">
-                                       <font>
-                                          <Font name="System Bold" size="11.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets bottom="1.0" top="1.0" />
-                                       </HBox.margin>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox layoutX="159.0" layoutY="2.0">
-                                 <children>
-                                    <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/cross.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Label layoutX="27.0" layoutY="3.0" text="Supprimer le(s) véhicule(s) sélectionné(s)">
-                                       <font>
-                                          <Font name="System Bold" size="11.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets bottom="1.0" top="1.0" />
-                                       </HBox.margin>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Contacts">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="4.0">
-                           <children>
-                              <Label layoutY="3.0" text="Filtres">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <GridPane minHeight="55.0" minWidth="800.0" prefHeight="55.0" prefWidth="1024.0" AnchorPane.topAnchor="25.0">
-                           <children>
-                              <Label text="Prénom">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Nom" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <Label text="Ville" GridPane.columnIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Province" GridPane.columnIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Téléphone" GridPane.columnIndex="4">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                           </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                        <Pane layoutY="94.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="95.0">
-                           <children>
-                              <Label layoutY="3.0" text="Liste de contacts">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <TableView layoutX="10.0" layoutY="115.0" minHeight="300.0" minWidth="200.0" prefHeight="300.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="115.0">
-                          <columns>
-                            <TableColumn minWidth="33.0" prefWidth="33.0" />
-                            <TableColumn minWidth="121.0" prefWidth="121.0" text="Prénom" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="Nom" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="Adresse" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="Province" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="Pay" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="Code postal" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="Téléphone" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="Courriel" />
-                          </columns>
-                        </TableView>
-                        <Pane layoutY="415.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="415.0">
-                           <children>
-                              <HBox layoutX="7.0" layoutY="2.0">
-                                 <children>
-                                    <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/add.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Label layoutX="27.0" layoutY="3.0" text="Ajouter un contact">
-                                       <font>
-                                          <Font name="System Bold" size="11.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets bottom="1.0" top="1.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox layoutX="159.0" layoutY="2.0">
-                                 <children>
-                                    <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/cross.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Label layoutX="27.0" layoutY="3.0" text="Supprimer le(s) contact(s) sélectionné(s)">
-                                       <font>
-                                          <Font name="System Bold" size="11.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets bottom="1.0" top="1.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-            <Tab text="Entretiens">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="4.0">
-                           <children>
-                              <Label layoutY="3.0" text="Filtres">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <GridPane layoutY="21.0" minHeight="55.0" minWidth="800.0" prefHeight="55.0" prefWidth="1024.0" AnchorPane.topAnchor="25.0">
-                           <children>
-                              <Label text="Type d'entretien">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Effectué par" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <Label text="No. série" GridPane.columnIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="No. stock" GridPane.columnIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="No. facture" GridPane.columnIndex="4">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                           </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                        <Pane layoutY="88.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="95.0">
-                           <children>
-                              <Label layoutY="3.0" text="Liste d'entretiens">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <TableView layoutY="114.0" minHeight="300.0" minWidth="200.0" prefHeight="300.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="114.0">
-                           <columns>
-                              <TableColumn minWidth="33.0" prefWidth="33.0" />
-                              <TableColumn minWidth="173.0" prefWidth="173.0" text="Type d'entretien" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="Date" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="Prix" />
-                              <TableColumn minWidth="175.0" prefWidth="175.0" text="Effectué par" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="No. série" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="No. stock" />
-                              <TableColumn minWidth="121.0" prefWidth="121.0" text="No. facture" />
-                           </columns>
-                        </TableView>
-                        <Pane layoutY="412.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="412.0">
-                           <children>
-                              <HBox layoutX="7.0" layoutY="2.0">
-                                 <children>
-                                    <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/add.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Label layoutX="27.0" layoutY="3.0" text="Ajouter un entretien">
-                                       <font>
-                                          <Font name="System Bold" size="11.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets bottom="1.0" top="1.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox layoutX="162.0" layoutY="2.0">
-                                 <children>
-                                    <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/cross.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Label layoutX="27.0" layoutY="3.0" text="Supprimer le(s) entretien(s) sélectionné(s)">
-                                       <font>
-                                          <Font name="System Bold" size="11.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets bottom="1.0" top="1.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-      <Label layoutX="14.0" layoutY="52.0" text="Gestion de parc automobile" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="52.0">
-         <font>
-            <Font size="18.0" />
-         </font></Label>
-      <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Fichier">
-            <items>
-                  <MenuItem mnemonicParsing="false" text="Préférence" />
-              <MenuItem mnemonicParsing="false" text="Quitter" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="768.0" minWidth="800.0" prefHeight="768.0" prefWidth="1024.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controller.VehiculeListController">
+	<children>
+		<TabPane prefHeight="768.0" prefWidth="1024.0"
+			tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+			AnchorPane.topAnchor="100.0">
+			<tabs>
+				<Tab style="-fx-cursor: hand;" text="Véhicules">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<children>
+								<Pane layoutX="10.0" layoutY="4.0" maxHeight="-Infinity"
+									minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0"
+									style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0"
+									AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="4.0">
+									<children>
+										<Label layoutY="3.0" text="Filtres" textFill="WHITE">
+											<padding>
+												<Insets left="10.0" />
+											</padding>
+										</Label>
+									</children>
+								</Pane>
+								<GridPane layoutY="26.0" minHeight="115.0" minWidth="800.0"
+									prefHeight="120.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0"
+									AnchorPane.rightAnchor="0.0">
+									<children>
+										<Label fx:id="NoStockLabel" onMouseClicked="#setFocusNoStock"
+											text="No. de stock">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<Label fx:id="CouleurLabel" onMouseClicked="#setFocusCouleur"
+											text="Couleur" GridPane.rowIndex="2">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<Label fx:id="NoSerieLabel" onMouseClicked="#setFocuNoSerie"
+											text="No. série" GridPane.columnIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<Label fx:id="NoImmatriculationLabel" onMouseClicked="#setFocusNoImmatriculation"
+											text="No. immatriculation" GridPane.columnIndex="1"
+											GridPane.rowIndex="2">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<TextField fx:id="NoStockTextField" onAction="#RechercheChange"
+											GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<TextField fx:id="NoSerieTextField" onAction="#RechercheChange"
+											GridPane.columnIndex="1" GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<TextField fx:id="AnneeFabTextField" onAction="#RechercheChange"
+											GridPane.columnIndex="2" GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<TextField fx:id="MarqueTextField" onAction="#RechercheChange"
+											GridPane.columnIndex="3" GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<TextField fx:id="ModeleTextField" onAction="#RechercheChange"
+											GridPane.columnIndex="4" GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<ComboBox fx:id="EstVenduCombo" prefWidth="150.0"
+											GridPane.columnIndex="5" GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</ComboBox>
+										<TextField fx:id="CouleurTextField" onAction="#RechercheChange"
+											GridPane.rowIndex="3">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<TextField fx:id="NoImmatricTextField" onAction="#RechercheChange"
+											GridPane.columnIndex="1" GridPane.rowIndex="3">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<Label fx:id="AnneeFabLabel" onMouseClicked="#setFocusAnneeFab"
+											text="Année de fabrication" GridPane.columnIndex="2">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<Label fx:id="TransmissionLabel" onMouseClicked="#setFocusTransmission"
+											text="Transmission" GridPane.columnIndex="2"
+											GridPane.rowIndex="2">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<Label fx:id="MarqueLabel" onMouseClicked="#setFocusMarque"
+											text="Marque" GridPane.columnIndex="3">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<Label fx:id="ModeleLabel" onMouseClicked="#setFocusModele"
+											text="Modèle" GridPane.columnIndex="4">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<Label fx:id="CilyndreLabel" onMouseClicked="#setFocusCilyndre"
+											text="Cilyndré" GridPane.columnIndex="3" GridPane.rowIndex="2">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<Label fx:id="KilometrageDeLabel" onMouseClicked="#setFocusKilometrageDe"
+											text="Kilométrage de" GridPane.columnIndex="4"
+											GridPane.rowIndex="2">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<ComboBox fx:id="TransmissionCombo" prefWidth="200.0"
+											promptText="Manuelle" GridPane.columnIndex="2"
+											GridPane.rowIndex="3">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</ComboBox>
+										
+										
+										<TextField fx:id="CilyndreTextField" onAction="#RechercheChange"
+											GridPane.columnIndex="3" GridPane.rowIndex="3">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										
+										<TextField fx:id="KilometrageDeTextField" onAction="#RechercheChange"
+											GridPane.columnIndex="4" GridPane.rowIndex="3">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<Label fx:id="EstVenduLabel" onMouseClicked="#setFocusEstVendu"
+											text="Est vendu" GridPane.columnIndex="5">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<Label fx:id="KilometrageALabel" onMouseClicked="#setFocusKilometrageA"
+											text="Kilométrage à" GridPane.columnIndex="5"
+											GridPane.rowIndex="2">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+											<cursor>
+												<Cursor fx:constant="HAND" />
+											</cursor>
+										</Label>
+										<TextField fx:id="KilometrageATextField" onAction="#RechercheChange"
+											GridPane.columnIndex="5" GridPane.rowIndex="3">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										
+									</children>
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints minHeight="10.0" prefHeight="30.0"
+											vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0"
+											vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0"
+											vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0"
+											vgrow="SOMETIMES" />
+									</rowConstraints>
+								</GridPane>
+								<TableView fx:id="tableVehicule" layoutX="10.0"
+									layoutY="183.0" minHeight="300.0" minWidth="200.0" prefHeight="300.0"
+									prefWidth="200.0" AnchorPane.leftAnchor="10.0"
+									AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="183.0">
+									<columns>
+										<TableColumn minWidth="33.0" prefWidth="33.0" />
+										<TableColumn fx:id="noStockCol" maxWidth="-1.0"
+											minWidth="121.0" prefWidth="121.0" text="No. de stock" />
+										<TableColumn fx:id="noSerieCol" maxWidth="-1.0"
+											minWidth="121.0" prefWidth="121.0" text="No. de série" />
+										<TableColumn fx:id="anneeCol" maxWidth="-1.0"
+											minWidth="121.0" prefWidth="121.0" text="Année" />
+										<TableColumn fx:id="marqueCol" maxWidth="-1.0"
+											minWidth="121.0" prefWidth="121.0" text="Marque" />
+										<TableColumn fx:id="modeleCol" maxWidth="-1.0"
+											minWidth="121.0" prefWidth="121.0" text="Modèle" />
+										<TableColumn fx:id="couleurCol" maxWidth="-1.0"
+											minWidth="121.0" prefWidth="121.0" text="Couleur" />
+										<TableColumn fx:id="transmissionCol" maxWidth="-1.0"
+											minWidth="121.0" prefWidth="121.0" text="Transmission" />
+										<TableColumn fx:id="kilometrageCol" maxWidth="-1.0"
+											minWidth="122.0" prefWidth="121.0" text="Kilométrage" />
+									</columns>
+								</TableView>
+								<Pane layoutX="10.0" layoutY="163.0" maxHeight="-Infinity"
+									minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0"
+									style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0"
+									AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="163.0">
+									<children>
+										<Label layoutY="3.0" text="Liste de véhicules" textFill="WHITE">
+											<padding>
+												<Insets left="10.0" />
+											</padding>
+										</Label>
+									</children>
+								</Pane>
+								<Pane layoutX="10.0" layoutY="483.0" maxHeight="-Infinity"
+									minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0"
+									style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0"
+									AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="483.0">
+									<children>
+										<HBox layoutX="7.0" layoutY="2.0">
+											<children>
+												<ImageView fitHeight="15.0" fitWidth="15.0"
+													layoutX="7.0" layoutY="2.0" pickOnBounds="true"
+													preserveRatio="true">
+													<image>
+														<Image url="@../images/add.png" />
+													</image>
+													<HBox.margin>
+														<Insets right="5.0" />
+													</HBox.margin>
+												</ImageView>
+												<Label layoutX="27.0" layoutY="3.0" text="Ajouter un véhicule"
+													textFill="WHITE">
+													<font>
+														<Font name="System Bold" size="11.0" />
+													</font>
+													<HBox.margin>
+														<Insets bottom="1.0" top="1.0" />
+													</HBox.margin>
+													<cursor>
+														<Cursor fx:constant="HAND" />
+													</cursor>
+												</Label>
+											</children>
+										</HBox>
+										<HBox layoutX="159.0" layoutY="2.0">
+											<children>
+												<ImageView fitHeight="15.0" fitWidth="15.0"
+													layoutX="7.0" layoutY="2.0" pickOnBounds="true"
+													preserveRatio="true">
+													<image>
+														<Image url="@../images/cross.png" />
+													</image>
+													<HBox.margin>
+														<Insets right="5.0" />
+													</HBox.margin>
+												</ImageView>
+												<Label layoutX="27.0" layoutY="3.0"
+													text="Supprimer le(s) véhicule(s) sélectionné(s)" textFill="WHITE">
+													<font>
+														<Font name="System Bold" size="11.0" />
+													</font>
+													<HBox.margin>
+														<Insets bottom="1.0" top="1.0" />
+													</HBox.margin>
+													<cursor>
+														<Cursor fx:constant="HAND" />
+													</cursor>
+												</Label>
+											</children>
+										</HBox>
+									</children>
+								</Pane>
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab style="-fx-cursor: hand;" text="Contacts">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<children>
+								<Pane maxHeight="-Infinity" minHeight="-Infinity"
+									prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;"
+									AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+									AnchorPane.topAnchor="4.0">
+									<children>
+										<Label layoutY="3.0" text="Filtres">
+											<padding>
+												<Insets left="10.0" />
+											</padding>
+										</Label>
+									</children>
+								</Pane>
+								<GridPane minHeight="55.0" minWidth="800.0" prefHeight="55.0"
+									prefWidth="1024.0" AnchorPane.topAnchor="25.0">
+									<children>
+										<Label text="Prénom">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</Label>
+										<Label text="Nom" GridPane.columnIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</Label>
+										<TextField GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<TextField GridPane.columnIndex="1"
+											GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<Label text="Ville" GridPane.columnIndex="2">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</Label>
+										<Label text="Province" GridPane.columnIndex="3">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</Label>
+										<Label text="Téléphone" GridPane.columnIndex="4">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</Label>
+										<TextField GridPane.columnIndex="2"
+											GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<TextField GridPane.columnIndex="3"
+											GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<TextField GridPane.columnIndex="4"
+											GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+									</children>
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints minHeight="10.0" prefHeight="30.0"
+											vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0"
+											vgrow="SOMETIMES" />
+									</rowConstraints>
+								</GridPane>
+								<Pane layoutY="94.0" maxHeight="-Infinity" minHeight="-Infinity"
+									prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;"
+									AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+									AnchorPane.topAnchor="95.0">
+									<children>
+										<Label layoutY="3.0" text="Liste de contacts">
+											<padding>
+												<Insets left="10.0" />
+											</padding>
+										</Label>
+									</children>
+								</Pane>
+								<TableView layoutX="10.0" layoutY="115.0" minHeight="300.0"
+									minWidth="200.0" prefHeight="300.0" prefWidth="200.0"
+									AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+									AnchorPane.topAnchor="115.0">
+									<columns>
+										<TableColumn minWidth="33.0" prefWidth="33.0" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="Prénom" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="Nom" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="Adresse" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="Province" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="Pay" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="Code postal" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="Téléphone" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="Courriel" />
+									</columns>
+								</TableView>
+								<Pane layoutY="415.0" maxHeight="-Infinity" minHeight="-Infinity"
+									prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;"
+									AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+									AnchorPane.topAnchor="415.0">
+									<children>
+										<HBox layoutX="7.0" layoutY="2.0">
+											<children>
+												<ImageView fitHeight="15.0" fitWidth="15.0"
+													layoutX="7.0" layoutY="2.0" pickOnBounds="true"
+													preserveRatio="true">
+													<image>
+														<Image url="@../images/add.png" />
+													</image>
+													<HBox.margin>
+														<Insets right="5.0" />
+													</HBox.margin>
+												</ImageView>
+												<Label layoutX="27.0" layoutY="3.0" text="Ajouter un contact">
+													<font>
+														<Font name="System Bold" size="11.0" />
+													</font>
+													<HBox.margin>
+														<Insets bottom="1.0" top="1.0" />
+													</HBox.margin>
+												</Label>
+											</children>
+										</HBox>
+										<HBox layoutX="159.0" layoutY="2.0">
+											<children>
+												<ImageView fitHeight="15.0" fitWidth="15.0"
+													layoutX="7.0" layoutY="2.0" pickOnBounds="true"
+													preserveRatio="true">
+													<image>
+														<Image url="@../images/cross.png" />
+													</image>
+													<HBox.margin>
+														<Insets right="5.0" />
+													</HBox.margin>
+												</ImageView>
+												<Label layoutX="27.0" layoutY="3.0"
+													text="Supprimer le(s) contact(s) sélectionné(s)">
+													<font>
+														<Font name="System Bold" size="11.0" />
+													</font>
+													<HBox.margin>
+														<Insets bottom="1.0" top="1.0" />
+													</HBox.margin>
+												</Label>
+											</children>
+										</HBox>
+									</children>
+								</Pane>
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab style="-fx-cursor: hand;" text="Entretiens">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<children>
+								<Pane maxHeight="-Infinity" minHeight="-Infinity"
+									prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;"
+									AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+									AnchorPane.topAnchor="4.0">
+									<children>
+										<Label layoutY="3.0" text="Filtres">
+											<padding>
+												<Insets left="10.0" />
+											</padding>
+										</Label>
+									</children>
+								</Pane>
+								<GridPane layoutY="21.0" minHeight="55.0" minWidth="800.0"
+									prefHeight="55.0" prefWidth="1024.0" AnchorPane.topAnchor="25.0">
+									<children>
+										<Label text="Type d'entretien">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</Label>
+										<Label text="Effectué par" GridPane.columnIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</Label>
+										<TextField GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<TextField GridPane.columnIndex="1"
+											GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<Label text="No. série" GridPane.columnIndex="2">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</Label>
+										<Label text="No. stock" GridPane.columnIndex="3">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</Label>
+										<Label text="No. facture" GridPane.columnIndex="4">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</Label>
+										<TextField GridPane.columnIndex="2"
+											GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<TextField GridPane.columnIndex="3"
+											GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+										<TextField GridPane.columnIndex="4"
+											GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="10.0" right="10.0" />
+											</GridPane.margin>
+										</TextField>
+									</children>
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES"
+											minWidth="100.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints minHeight="10.0" prefHeight="30.0"
+											vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0"
+											vgrow="SOMETIMES" />
+									</rowConstraints>
+								</GridPane>
+								<Pane layoutY="88.0" maxHeight="-Infinity" minHeight="-Infinity"
+									prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;"
+									AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+									AnchorPane.topAnchor="95.0">
+									<children>
+										<Label layoutY="3.0" text="Liste d'entretiens">
+											<padding>
+												<Insets left="10.0" />
+											</padding>
+										</Label>
+									</children>
+								</Pane>
+								<TableView layoutY="114.0" minHeight="300.0" minWidth="200.0"
+									prefHeight="300.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0"
+									AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="114.0">
+									<columns>
+										<TableColumn minWidth="33.0" prefWidth="33.0" />
+										<TableColumn minWidth="173.0" prefWidth="173.0"
+											text="Type d'entretien" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="Date" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="Prix" />
+										<TableColumn minWidth="175.0" prefWidth="175.0"
+											text="Effectué par" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="No. série" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="No. stock" />
+										<TableColumn minWidth="121.0" prefWidth="121.0"
+											text="No. facture" />
+									</columns>
+								</TableView>
+								<Pane layoutY="412.0" maxHeight="-Infinity" minHeight="-Infinity"
+									prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;"
+									AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+									AnchorPane.topAnchor="412.0">
+									<children>
+										<HBox layoutX="7.0" layoutY="2.0">
+											<children>
+												<ImageView fitHeight="15.0" fitWidth="15.0"
+													layoutX="7.0" layoutY="2.0" pickOnBounds="true"
+													preserveRatio="true">
+													<image>
+														<Image url="@../images/add.png" />
+													</image>
+													<HBox.margin>
+														<Insets right="5.0" />
+													</HBox.margin>
+												</ImageView>
+												<Label layoutX="27.0" layoutY="3.0" text="Ajouter un entretien">
+													<font>
+														<Font name="System Bold" size="11.0" />
+													</font>
+													<HBox.margin>
+														<Insets bottom="1.0" top="1.0" />
+													</HBox.margin>
+												</Label>
+											</children>
+										</HBox>
+										<HBox layoutX="162.0" layoutY="2.0">
+											<children>
+												<ImageView fitHeight="15.0" fitWidth="15.0"
+													layoutX="7.0" layoutY="2.0" pickOnBounds="true"
+													preserveRatio="true">
+													<image>
+														<Image url="@../images/cross.png" />
+													</image>
+													<HBox.margin>
+														<Insets right="5.0" />
+													</HBox.margin>
+												</ImageView>
+												<Label layoutX="27.0" layoutY="3.0"
+													text="Supprimer le(s) entretien(s) sélectionné(s)">
+													<font>
+														<Font name="System Bold" size="11.0" />
+													</font>
+													<HBox.margin>
+														<Insets bottom="1.0" top="1.0" />
+													</HBox.margin>
+												</Label>
+											</children>
+										</HBox>
+									</children>
+								</Pane>
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>
+		<Label layoutX="14.0" layoutY="52.0" text="Gestion de parc automobile"
+			AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="52.0">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+			AnchorPane.topAnchor="0.0">
+			<menus>
+				<Menu mnemonicParsing="false" text="Fichier">
+					<items>
+						<MenuItem mnemonicParsing="false" text="Préférence" />
+						<MenuItem mnemonicParsing="false" text="Quitter" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+	</children>
 </AnchorPane>

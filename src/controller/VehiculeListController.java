@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -40,56 +41,47 @@ public class VehiculeListController implements Initializable {
 	private ObservableList<Vehicule> listAllVehicule;
 
 	@FXML
-	private TextField noStockTextField;
+	private TextField NoStockTextField;
 	@FXML
-	private TextField noSerieTextField;
+	private TextField NoSerieTextField;
 	@FXML
-	private TextField anneeFabTextField;
+	private TextField AnneeFabTextField;
 	@FXML
-	private TextField marqueTextField;
+	private TextField MarqueTextField;
 	@FXML
-	private TextField modeleTextField;
+	private TextField ModeleTextField;
 	@FXML
-	private ComboBox estVenduCombo;
+	private ComboBox EstVenduCombo;
 	@FXML
-	private TextField couleurTextField;
+	private TextField CouleurTextField;
 	@FXML
-	private TextField noImmatricTextField;
+	private TextField NoImmatricTextField;
 	@FXML
-	private ComboBox transmissionCombo;
+	private ComboBox TransmissionCombo;
 	@FXML
-	private TextField cilyndreTextField;
+	private TextField CilyndreTextField;
 	@FXML
-	private TextField kilometrageDeTextField;
+	private TextField KilometrageDeTextField;
 	@FXML
-	private TextField kilometrageATextField;
+	private TextField KilometrageATextField;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		transmissionCombo.getItems().addAll("Tous", "Automatique", "Manuelle");
-		transmissionCombo.setValue("Tous");
-
-		transmissionCombo.valueProperty().addListener(
-				new ChangeListener<String>() {
-
-					@Override
-					public void changed(
-							ObservableValue<? extends String> observable,
-							String oldValue, String newValue) {
-						RechercheChange();
-					}
-				});
-
-		estVenduCombo.getItems().addAll("Tous", "Oui", "Non");
-		estVenduCombo.setValue("Tous");
-		estVenduCombo.valueProperty().addListener(new ChangeListener<String>() {
-
+		Platform.runLater(new Runnable() {
 			@Override
-			public void changed(ObservableValue<? extends String> observable,
-					String oldValue, String newValue) {
-				RechercheChange();
+			public void run() {
+				NoStockTextField.requestFocus();
+				setupListeners();
 			}
 		});
+		
+		
+
+		TransmissionCombo.getItems().addAll("Tous", "Automatique", "Manuelle");
+		TransmissionCombo.setValue("Tous");
+
+		EstVenduCombo.getItems().addAll("Tous", "Oui", "Non");
+		EstVenduCombo.setValue("Tous");
 		try {
 			listAllVehicule = Vehicule.listeDeVehicule("");
 			fillVehiculeTable(listAllVehicule);
@@ -107,6 +99,54 @@ public class VehiculeListController implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void setFocusNoStock() {
+		NoStockTextField.requestFocus();
+	}
+
+	public void setFocuNoSerie() {
+		NoSerieTextField.requestFocus();
+	}
+
+	public void setFocusAnneeFab() {
+		AnneeFabTextField.requestFocus();
+	}
+
+	public void setFocusMarque() {
+		MarqueTextField.requestFocus();
+	}
+
+	public void setFocusModele() {
+		ModeleTextField.requestFocus();
+	}
+
+	public void setFocusEstVendu() {
+		EstVenduCombo.requestFocus();
+	}
+
+	public void setFocusCouleur() {
+		CouleurTextField.requestFocus();
+	}
+
+	public void setFocusNoImmatriculation() {
+		NoImmatricTextField.requestFocus();
+	}
+
+	public void setFocusTransmission() {
+		TransmissionCombo.requestFocus();
+	}
+
+	public void setFocusCilyndre() {
+		CilyndreTextField.requestFocus();
+	}
+
+	public void setFocusKilometrageDe() {
+		KilometrageDeTextField.requestFocus();
+	}
+
+	public void setFocusKilometrageA() {
+		KilometrageATextField.requestFocus();
 	}
 
 	@FXML
@@ -155,65 +195,65 @@ public class VehiculeListController implements Initializable {
 		String sqlRq = "SELECT * FROM Vehicules";
 		boolean premierElementRencontre = false;
 
-		if (!noStockTextField.getText().equals("")) {
+		if (!NoStockTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldStockNumber LIKE '%"
-						+ noStockTextField.getText() + "%'";
+						+ NoStockTextField.getText() + "%'";
 			} else {
 				sqlRq += " AND fldStockNumber LIKE '%"
-						+ noStockTextField.getText() + "%'";
+						+ NoStockTextField.getText() + "%'";
 			}
 		}
 
-		if (!noSerieTextField.getText().equals("")) {
+		if (!NoSerieTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldNoSerie LIKE '%"
-						+ noSerieTextField.getText() + "%'";
+						+ NoSerieTextField.getText() + "%'";
 			} else {
-				sqlRq += " AND fldNoSerie LIKE '%" + noSerieTextField.getText()
+				sqlRq += " AND fldNoSerie LIKE '%" + NoSerieTextField.getText()
 						+ "%'";
 			}
 		}
 
-		if (!anneeFabTextField.getText().equals("")) {
+		if (!AnneeFabTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldAnnee LIKE '%"
-						+ anneeFabTextField.getText() + "%'";
+						+ AnneeFabTextField.getText() + "%'";
 			} else {
-				sqlRq += " AND fldAnnee LIKE '%" + anneeFabTextField.getText()
+				sqlRq += " AND fldAnnee LIKE '%" + AnneeFabTextField.getText()
 						+ "%'";
 			}
 		}
 
-		if (!marqueTextField.getText().equals("")) {
+		if (!MarqueTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
-				sqlRq += " WHERE fldMarque LIKE '%" + marqueTextField.getText()
+				sqlRq += " WHERE fldMarque LIKE '%" + MarqueTextField.getText()
 						+ "%'";
 			} else {
-				sqlRq += " AND fldMarque LIKE '%" + marqueTextField.getText()
+				sqlRq += " AND fldMarque LIKE '%" + MarqueTextField.getText()
 						+ "%'";
 			}
 		}
 
-		if (!modeleTextField.getText().equals("")) {
+		if (!ModeleTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
-				sqlRq += " WHERE fldModele LIKE '%" + modeleTextField.getText()
+				sqlRq += " WHERE fldModele LIKE '%" + ModeleTextField.getText()
 						+ "%'";
 			} else {
-				sqlRq += " AND fldModele LIKE '%" + modeleTextField.getText()
+				sqlRq += " AND fldModele LIKE '%" + ModeleTextField.getText()
 						+ "%'";
 			}
 		}
 
-		if (!estVenduCombo.getValue().equals("Tous")) {
+		if (!EstVenduCombo.getValue().equals("Tous")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
-				switch (estVenduCombo.getValue().toString()) {
+				switch (EstVenduCombo.getValue().toString()) {
 				case "Oui":
 					sqlRq += " WHERE fldVente = 1";
 					break;
@@ -223,7 +263,7 @@ public class VehiculeListController implements Initializable {
 				}
 
 			} else {
-				switch (estVenduCombo.getValue().toString()) {
+				switch (EstVenduCombo.getValue().toString()) {
 				case "Oui":
 					sqlRq += " AND fldVente = 1";
 					break;
@@ -234,18 +274,18 @@ public class VehiculeListController implements Initializable {
 			}
 		}
 
-		if (!couleurTextField.getText().equals("")) {
+		if (!CouleurTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldNoPeinture LIKE '%"
-						+ couleurTextField.getText() + "%'";
+						+ CouleurTextField.getText() + "%'";
 			} else {
 				sqlRq += " AND fldNoPeinture LIKE '%"
-						+ couleurTextField.getText() + "%'";
+						+ CouleurTextField.getText() + "%'";
 			}
 		}
 		// À compléter, je ne trouve pas le champ dans la BD
-		if (!noImmatricTextField.getText().equals("")) {
+		if (!NoImmatricTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += "";
@@ -254,18 +294,18 @@ public class VehiculeListController implements Initializable {
 			}
 		}
 
-		if (!transmissionCombo.getValue().equals("Tous")) {
+		if (!TransmissionCombo.getValue().equals("Tous")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldTransmission LIKE '%"
-						+ transmissionCombo.getValue() + "%'";
+						+ TransmissionCombo.getValue() + "%'";
 			} else {
 				sqlRq += " AND fldTransmission LIKE '%"
-						+ transmissionCombo.getValue() + "%'";
+						+ TransmissionCombo.getValue() + "%'";
 			}
 		}
 
-		if (!cilyndreTextField.getText().equals("")) {
+		if (!CilyndreTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += "";
@@ -274,29 +314,150 @@ public class VehiculeListController implements Initializable {
 			}
 		}
 
-		if (!kilometrageDeTextField.getText().equals("")) {
+		if (!KilometrageDeTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldKilometrage >="
-						+ kilometrageDeTextField.getText();
+						+ KilometrageDeTextField.getText();
 			} else {
 				sqlRq += " AND fldKilometrage >="
-						+ kilometrageDeTextField.getText();
+						+ KilometrageDeTextField.getText();
 			}
 		}
 
-		if (!kilometrageATextField.getText().equals("")) {
+		if (!KilometrageATextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
 				sqlRq += " WHERE fldKilometrage <= "
-						+ kilometrageATextField.getText();
+						+ KilometrageATextField.getText();
 			} else {
 				sqlRq += " AND fldKilometrage <="
-						+ kilometrageATextField.getText();
+						+ KilometrageATextField.getText();
 			}
 		}
 		return sqlRq;
 
 	}
 
+	public void setupListeners() {
+		NoStockTextField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						RechercheChange();
+					}
+				});
+
+		NoSerieTextField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						RechercheChange();
+					}
+				});
+
+		AnneeFabTextField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						RechercheChange();
+					}
+				});
+
+		MarqueTextField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						RechercheChange();
+					}
+				});
+
+		ModeleTextField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						RechercheChange();
+					}
+				});
+
+		EstVenduCombo.valueProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable,
+					String oldValue, String newValue) {
+				RechercheChange();
+			}
+		});
+
+		CouleurTextField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						RechercheChange();
+					}
+				});
+
+		NoImmatricTextField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						RechercheChange();
+					}
+				});
+
+		TransmissionCombo.valueProperty().addListener(
+				new ChangeListener<String>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						RechercheChange();
+					}
+				});
+
+		CilyndreTextField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						RechercheChange();
+					}
+				});
+
+		KilometrageDeTextField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						RechercheChange();
+					}
+				});
+
+		KilometrageATextField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						RechercheChange();
+					}
+				});
+
+	}
 }
