@@ -1,20 +1,32 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Vehicule;
 
 public class VehiculeListController implements Initializable {
@@ -74,9 +86,52 @@ public class VehiculeListController implements Initializable {
 				setupListeners();
 			}
 		});
-		
-		
 
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				tableVehicule.getSelectionModel().selectedItemProperty()
+						.addListener(new ChangeListener() {
+
+							@Override
+							public void changed(ObservableValue observable,
+									Object oldValue, Object newValue) {
+								Vehicule selectedVehicule = (Vehicule) newValue;
+								System.out.println(selectedVehicule
+										.getStockNumber());
+							}
+						});
+
+			}
+		});
+
+		tableVehicule.setOnMousePressed(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event event) {
+				// TODO Auto-generated method stub
+				try {
+					Stage stage = new Stage();
+					Parent root;
+
+					root = FXMLLoader.load(VehiculeDetailController.class
+							.getResource("/fxml/VehiculeDetails.fxml"));
+					stage.setScene(new Scene(root));
+					stage.setTitle("My modal window");
+					stage.initModality(Modality.APPLICATION_MODAL);
+					stage.initOwner(((Node) event.getSource()).getScene()
+							.getWindow());
+					stage.show();
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
 		TransmissionCombo.getItems().addAll("Tous", "Automatique", "Manuelle");
 		TransmissionCombo.setValue("Tous");
 
@@ -87,6 +142,24 @@ public class VehiculeListController implements Initializable {
 			fillVehiculeTable(listAllVehicule);
 
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void clickShow(ActionEvent event) {
+		Stage stage = new Stage();
+		Parent root;
+		try {
+			root = FXMLLoader.load(VehiculeDetailController.class
+					.getResource("VehiculeDetails.fxml"));
+			stage.setScene(new Scene(root));
+			stage.setTitle("My modal window");
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+			stage.show();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -340,87 +413,105 @@ public class VehiculeListController implements Initializable {
 	}
 
 	public void setupListeners() {
-		NoStockTextField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
+
+		NoStockTextField.textProperty().addListener(
+				new ChangeListener<String>() {
 					@Override
 					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						RechercheChange();
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (newValue != oldValue) {
+							RechercheChange();
+						}
 					}
 				});
 
-		NoSerieTextField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
+		NoSerieTextField.textProperty().addListener(
+				new ChangeListener<String>() {
+
 					@Override
 					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						RechercheChange();
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (newValue != oldValue) {
+							RechercheChange();
+						}
 					}
 				});
 
-		AnneeFabTextField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
+		AnneeFabTextField.textProperty().addListener(
+				new ChangeListener<String>() {
+
 					@Override
 					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						RechercheChange();
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (newValue != oldValue) {
+							RechercheChange();
+						}
 					}
 				});
 
-		MarqueTextField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
+		MarqueTextField.textProperty().addListener(
+				new ChangeListener<String>() {
 					@Override
 					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						RechercheChange();
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (newValue != oldValue) {
+							RechercheChange();
+						}
 					}
 				});
 
-		ModeleTextField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
+		ModeleTextField.textProperty().addListener(
+				new ChangeListener<String>() {
+
 					@Override
 					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						RechercheChange();
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (newValue != oldValue) {
+							RechercheChange();
+						}
 					}
 				});
 
 		EstVenduCombo.valueProperty().addListener(new ChangeListener<String>() {
+
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
-				RechercheChange();
 			}
 		});
 
-		CouleurTextField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
+		CouleurTextField.textProperty().addListener(
+				new ChangeListener<String>() {
+
 					@Override
 					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						RechercheChange();
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (newValue != oldValue) {
+							RechercheChange();
+						}
 					}
 				});
 
-		NoImmatricTextField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
+		NoImmatricTextField.textProperty().addListener(
+				new ChangeListener<String>() {
 					@Override
 					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						RechercheChange();
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (newValue != oldValue) {
+							RechercheChange();
+						}
 					}
 				});
 
 		TransmissionCombo.valueProperty().addListener(
 				new ChangeListener<String>() {
-
 					@Override
 					public void changed(
 							ObservableValue<? extends String> observable,
@@ -429,33 +520,39 @@ public class VehiculeListController implements Initializable {
 					}
 				});
 
-		CilyndreTextField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
+		CilyndreTextField.textProperty().addListener(
+				new ChangeListener<String>() {
 					@Override
 					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						RechercheChange();
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (newValue != oldValue) {
+							RechercheChange();
+						}
 					}
 				});
 
-		KilometrageDeTextField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
+		KilometrageDeTextField.textProperty().addListener(
+				new ChangeListener<String>() {
 					@Override
 					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						RechercheChange();
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (newValue != oldValue) {
+							RechercheChange();
+						}
 					}
 				});
 
-		KilometrageATextField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
+		KilometrageATextField.textProperty().addListener(
+				new ChangeListener<String>() {
 					@Override
 					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						RechercheChange();
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (newValue != oldValue) {
+							RechercheChange();
+						}
 					}
 				});
 

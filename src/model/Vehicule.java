@@ -391,5 +391,7 @@ public class Vehicule {
 		
 
 	}
-
+public String toString(){
+	return stockNumber;
+}
 }
