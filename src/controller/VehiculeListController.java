@@ -5,8 +5,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
-
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -25,9 +23,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Vehicule;
+import model.VehiculeToBeModified;
 
 public class VehiculeListController implements Initializable {
 
@@ -76,6 +78,8 @@ public class VehiculeListController implements Initializable {
 	private TextField KilometrageDeTextField;
 	@FXML
 	private TextField KilometrageATextField;
+	@FXML
+	private HBox AddVehiculeHBox;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -99,15 +103,109 @@ public class VehiculeListController implements Initializable {
 							public void changed(ObservableValue observable,
 									Object oldValue, Object newValue) {
 								Vehicule selectedVehicule = (Vehicule) newValue;
-								System.out.println(selectedVehicule
-										.getStockNumber());
+
+								VehiculeToBeModified
+										.setStockNumber(selectedVehicule
+												.getStockNumber());
+								VehiculeToBeModified
+										.setNoSerie(selectedVehicule
+												.getNoSerie());
+								VehiculeToBeModified.setMarque(selectedVehicule
+										.getMarque());
+								VehiculeToBeModified.setModele(selectedVehicule
+										.getModele());
+								VehiculeToBeModified.setAnnee(selectedVehicule
+										.getAnnee());
+								VehiculeToBeModified
+										.setCouleur(selectedVehicule
+												.getCouleur());
+								VehiculeToBeModified
+										.setTypeVendeur(selectedVehicule
+												.getTypeVendeur());
+								VehiculeToBeModified
+										.setDateAchat(selectedVehicule
+												.getDateAchat());
+								VehiculeToBeModified
+										.setNoVendeur(selectedVehicule
+												.getNoVendeur());
+								VehiculeToBeModified
+										.setEstVendu(selectedVehicule
+												.isEstVendu());
+								VehiculeToBeModified
+										.setPrixVente(selectedVehicule
+												.getPrixVente());
+								VehiculeToBeModified
+										.setTypeAcheteur(selectedVehicule
+												.getTypeAcheteur());
+								VehiculeToBeModified
+										.setNoAcheteur(selectedVehicule
+												.getNoAcheteur());
+								VehiculeToBeModified
+										.setPrixAcheteur(selectedVehicule
+												.getPrixAcheteur());
+								VehiculeToBeModified
+										.setDateVente(selectedVehicule
+												.getDateVente());
+								VehiculeToBeModified
+										.setaEuEchange(selectedVehicule
+												.isaEuEchange());
+								VehiculeToBeModified
+										.setaEuEntretien(selectedVehicule
+												.isaEuEntretien());
+								VehiculeToBeModified
+										.setTransmission(selectedVehicule
+												.getTransmission());
+								VehiculeToBeModified.setNoClef(selectedVehicule
+										.getNoClef());
+								VehiculeToBeModified
+										.setKilometrage(selectedVehicule
+												.getKilometrage());
+								VehiculeToBeModified
+										.setCilyndre(selectedVehicule
+												.getCilyndre());
+								VehiculeToBeModified.setCheque(selectedVehicule
+										.getCheque());
+								VehiculeToBeModified
+										.setPrixClient(selectedVehicule
+												.getPrixClient());
+								VehiculeToBeModified
+										.setVenteAvecContrat(selectedVehicule
+												.isVenteAvecContrat());
+
 							}
 						});
 
 			}
 		});
 
-		tableVehicule.setOnMousePressed(new EventHandler<Event>() {
+		tableVehicule.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
+					// TODO Auto-generated method stub
+					try {
+						Stage stage = new Stage();
+						Parent root;
+
+						root = FXMLLoader.load(VehiculeDetailController.class
+								.getResource("/fxml/VehiculeDetails.fxml"));
+						stage.setScene(new Scene(root));
+						stage.setTitle("My modal window");
+						stage.initModality(Modality.APPLICATION_MODAL);
+						stage.initOwner(((Node) event.getSource()).getScene()
+								.getWindow());
+						stage.show();
+
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+
+		AddVehiculeHBox.setOnMousePressed(new EventHandler<Event>() {
 
 			@Override
 			public void handle(Event event) {
@@ -132,6 +230,7 @@ public class VehiculeListController implements Initializable {
 
 			}
 		});
+
 		TransmissionCombo.getItems().addAll("Tous", "Automatique", "Manuelle");
 		TransmissionCombo.setValue("Tous");
 
@@ -555,6 +654,6 @@ public class VehiculeListController implements Initializable {
 						}
 					}
 				});
-
 	}
+
 }
