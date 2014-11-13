@@ -191,7 +191,7 @@ public class VehiculeListController implements Initializable {
 						root = FXMLLoader.load(VehiculeDetailController.class
 								.getResource("/fxml/VehiculeDetails.fxml"));
 						stage.setScene(new Scene(root));
-						stage.setTitle("My modal window");
+						stage.setTitle("Modification du véhicule");
 						stage.initModality(Modality.APPLICATION_MODAL);
 						stage.initOwner(((Node) event.getSource()).getScene()
 								.getWindow());
@@ -217,7 +217,7 @@ public class VehiculeListController implements Initializable {
 					root = FXMLLoader.load(VehiculeDetailController.class
 							.getResource("/fxml/VehiculeDetails.fxml"));
 					stage.setScene(new Scene(root));
-					stage.setTitle("My modal window");
+					stage.setTitle("Ajout de véhicule");
 					stage.initModality(Modality.APPLICATION_MODAL);
 					stage.initOwner(((Node) event.getSource()).getScene()
 							.getWindow());

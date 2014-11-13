@@ -34,7 +34,7 @@ public class Vehicule {
 	private int kilometrage;
 	private String cilyndre;
 	private String stockNumber;
-	private String Cheque;
+	private String cheque;
 	private BigDecimal prixClient;
 	private boolean venteAvecContrat;
 
@@ -71,12 +71,10 @@ public class Vehicule {
 		this.kilometrage = kilometrage;
 		this.cilyndre = cilyndre;
 		this.stockNumber = stockNumber;
-		Cheque = cheque;
+		cheque = cheque;
 		this.prixClient = prixClient;
 		this.venteAvecContrat = venteAvecContrat;
 	}
-	
-	
 
 	public String getNoSerie() {
 		return noSerie;
@@ -247,11 +245,11 @@ public class Vehicule {
 	}
 
 	public String getCheque() {
-		return Cheque;
+		return cheque;
 	}
 
 	public void setCheque(String cheque) {
-		Cheque = cheque;
+		cheque = cheque;
 	}
 
 	public BigDecimal getPrixClient() {
@@ -270,13 +268,14 @@ public class Vehicule {
 		this.venteAvecContrat = venteAvecContrat;
 	}
 
-	public static ObservableList<Vehicule> listeDeVehicule(String sql) throws SQLException {
-		ObservableList<Vehicule> vehicules = FXCollections.observableArrayList();
-		
+	public static ObservableList<Vehicule> listeDeVehicule(String sql)
+			throws SQLException {
+		ObservableList<Vehicule> vehicules = FXCollections
+				.observableArrayList();
+
 		Connection conn = null;
 		java.sql.Statement stmt = null;
 		ResultSet rs = null;
-		
 
 		try {
 			// STEP 2: Register JDBC driver
@@ -284,24 +283,25 @@ public class Vehicule {
 
 			// STEP 3: Open a connection
 			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(Database.getUrl(), LoginInfo.getUserName(), LoginInfo.getPassword());
+			conn = DriverManager.getConnection(Database.getUrl(),
+					LoginInfo.getUserName(), LoginInfo.getPassword());
 
 			// STEP 4: Executing a query
 			System.out.println("Creating statement");
 			stmt = conn.createStatement();
-			//String sql;
-			if(sql==""){
+			// String sql;
+			if (sql == "") {
 				sql = "Select * FROM Vehicules";
 			} else {
-				
+
 			}
-			System.out.println("SQL :"+sql);
+			System.out.println("SQL :" + sql);
 			rs = stmt.executeQuery(sql);
 
 			// STEP 5: Extract data from result set
 			while (rs.next()) {
 				Vehicule vehicule = new Vehicule();
-				
+
 				// Retrieve by column name
 				String noSerie = rs.getString("fldNoSerie");
 				vehicule.setNoSerie(noSerie);
@@ -345,7 +345,7 @@ public class Vehicule {
 				vehicule.setCilyndre(cylindre);
 				String stockNumber = rs.getString("fldStockNumber");
 				vehicule.setStockNumber(stockNumber);
-				String cheque = rs.getString("fldCheque");
+				String cheque = rs.getString("fldcheque");
 				vehicule.setCheque(cheque);
 				BigDecimal prixClient = rs.getBigDecimal("fldPrixClient");
 				vehicule.setPrixClient(prixClient);
@@ -353,7 +353,7 @@ public class Vehicule {
 				vehicule.setVenteAvecContrat(venteAvecContrat);
 
 				vehicules.add(vehicule);
-				
+
 			}
 
 		} catch (Exception e) {
@@ -383,15 +383,91 @@ public class Vehicule {
 					e.printStackTrace();
 				}
 			}
-			
-			
+
 		}
 		return vehicules;
 
-		
-
 	}
-public String toString(){
-	return stockNumber;
-}
+
+	public String toString() {
+		return stockNumber;
+	}
+
+	public boolean metAjourVehicule(String noStock) throws SQLException {
+		boolean succes = false;
+		String sql = "";
+		Connection conn = null;
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			// STEP 2: Register JDBC driver
+			Class.forName(Database.getDriver());
+
+			// STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(Database.getUrl(),
+					LoginInfo.getUserName(), LoginInfo.getPassword());
+
+			// STEP 4: Executing a query
+			System.out.println("Creating statement");
+			stmt = conn.createStatement();
+			// String sql;
+			sql = "UPDATE Vehicules SET fldNoSerie ='" + this.noSerie
+					+ "', fldMarque = '" + this.marque + "', fldModele = '"
+					+ this.modele + "', fldAnnee = '" + this.annee
+					+ "', fldNoPeinture = '" + this.couleur
+					+ "', fldTypeVendeur = '" + this.typeVendeur
+					+ "', fldDateAchat = '" + this.dateAchat
+					+ "', fldNovendeur = '" + this.noVendeur
+					+ "', fldVente = '" + this.estVendu + "', fldPrixVente = '"
+					+ this.prixVente + "', fldTypeAcheteur = '"
+					+ this.typeAcheteur + "', fldNoAcheteur = '"
+					+ this.noAcheteur + "', fldPrixAchat = '"
+					+ this.prixAcheteur + "', fldDateVente = '"
+					+ this.dateVente + "', fldEchange = '" + this.aEuEchange
+					+ "', fldEntretien = '" + this.aEuEntretien
+					+ "', fldTransmission = '" + this.transmission
+					+ "', fldNoClef= '" + this.noClef + "', fldKilometrage = '"
+					+ this.kilometrage + "', fldCylindre = '" + this.cilyndre
+					+ "', fldStockNumber = '" + this.stockNumber
+					+ "', fldcheque = '" + this.cheque + "', fldPrixClient = '"
+					+ this.prixClient + "', fldVenteAvecContrat = '"
+					+ this.venteAvecContrat + "' WHERE fldStockNumber = '"
+					+ noStock + "'";
+			System.out.println("SQL :" + sql);
+			rs = stmt.executeQuery(sql);
+			succes = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+
+		return succes;
+	}
 }
