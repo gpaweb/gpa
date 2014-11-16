@@ -10,7 +10,7 @@ import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.PreparedStatement;
 
 public class Vehicule {
 	private String noSerie;
@@ -469,5 +469,85 @@ public class Vehicule {
 		}
 
 		return succes;
+	}
+
+	public boolean nouveauVehicule() throws SQLException {
+		boolean succes = false;
+		// STEP 1: Declare required objects
+		String sql = "";
+		Connection conn = null;
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			// STEP 2: Register JDBC driver
+			Class.forName(Database.getDriver());
+
+			// STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(Database.getUrl(),
+					LoginInfo.getUserName(), LoginInfo.getPassword());
+
+			// STEP 4: Executing a query
+			System.out.println("Creating statement");
+			stmt = conn.createStatement();
+
+			sql = "INSERT INTO Vehicules (fldStockNumber, fldNoSerie, fldMarque, fldModele, fldAnnee, fldNoPeinture, fldPrixVente, fldPrixAchat, fldTransmission, fldNoClef, fldKilometrage, fldCylindre) ";
+			// sql +=
+			// "VALUES ("+this.stockNumber+", "+this.noSerie+", "+this.marque+", "+this.modele+", "+this.annee+",
+			// "+this.couleur+", "+this.prixVente+", "+this.prixAcheteur+",
+			// "+this.transmission+", "+this.noClef+", "+this.kilometrage+",
+			// "+this.cilyndre+")";
+			sql += "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			// utilisation de PreparedStatement pour optimiser la requète
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+			preparedStatement.setString(1, this.stockNumber);
+			preparedStatement.setString(2, this.noSerie);
+			preparedStatement.setString(3, this.marque);
+			preparedStatement.setString(4, this.modele);
+			preparedStatement.setInt(5, this.annee);
+			preparedStatement.setString(6, this.couleur);
+			preparedStatement.setBigDecimal(7, this.prixVente);
+			preparedStatement.setBigDecimal(8, this.prixAcheteur);
+			preparedStatement.setString(9, this.transmission);
+			preparedStatement.setString(10, this.noClef);
+			preparedStatement.setInt(11, this.kilometrage);
+			preparedStatement.setString(12, this.cilyndre);
+
+			preparedStatement.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			succes = false;
+		} finally {
+
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+		// Retour vrai ou faux pour indiquer si tout c'est déroulé comme prévu
+		return succes;
+
 	}
 }
