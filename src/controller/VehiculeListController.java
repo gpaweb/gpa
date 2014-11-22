@@ -91,98 +91,83 @@ public class VehiculeListController implements Initializable {
 			}
 		});
 
-		Platform.runLater(new Runnable() {
+		tableVehicule.getSelectionModel().selectedItemProperty()
+				.addListener(new ChangeListener() {
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				tableVehicule.getSelectionModel().selectedItemProperty()
-						.addListener(new ChangeListener() {
+					@Override
+					public void changed(ObservableValue observable,
+							Object oldValue, Object newValue) {
+						Vehicule selectedVehicule = (Vehicule) newValue;
+						try {
+							VehiculeToBeModified
+									.setStockNumber(selectedVehicule
+											.getStockNumber());
+							VehiculeToBeModified.setNoSerie(selectedVehicule
+									.getNoSerie());
+							VehiculeToBeModified.setMarque(selectedVehicule
+									.getMarque());
+							VehiculeToBeModified.setModele(selectedVehicule
+									.getModele());
+							VehiculeToBeModified.setAnnee(selectedVehicule
+									.getAnnee());
+							VehiculeToBeModified.setCouleur(selectedVehicule
+									.getCouleur());
+							VehiculeToBeModified
+									.setTypeVendeur(selectedVehicule
+											.getTypeVendeur());
+							VehiculeToBeModified.setDateAchat(selectedVehicule
+									.getDateAchat());
+							VehiculeToBeModified.setNoVendeur(selectedVehicule
+									.getNoVendeur());
+							VehiculeToBeModified.setEstVendu(selectedVehicule
+									.isEstVendu());
+							VehiculeToBeModified.setPrixVente(selectedVehicule
+									.getPrixVente());
+							VehiculeToBeModified
+									.setTypeAcheteur(selectedVehicule
+											.getTypeAcheteur());
+							VehiculeToBeModified.setNoAcheteur(selectedVehicule
+									.getNoAcheteur());
+							VehiculeToBeModified
+									.setPrixAcheteur(selectedVehicule
+											.getPrixAcheteur());
+							VehiculeToBeModified.setDateVente(selectedVehicule
+									.getDateVente());
+							VehiculeToBeModified.setaEuEchange(selectedVehicule
+									.isaEuEchange());
+							VehiculeToBeModified
+									.setaEuEntretien(selectedVehicule
+											.isaEuEntretien());
+							VehiculeToBeModified
+									.setTransmission(selectedVehicule
+											.getTransmission());
+							VehiculeToBeModified.setNoClef(selectedVehicule
+									.getNoClef());
+							VehiculeToBeModified
+									.setKilometrage(selectedVehicule
+											.getKilometrage());
+							VehiculeToBeModified.setCilyndre(selectedVehicule
+									.getCilyndre());
+							VehiculeToBeModified.setCheque(selectedVehicule
+									.getCheque());
+							VehiculeToBeModified.setPrixClient(selectedVehicule
+									.getPrixClient());
+							VehiculeToBeModified
+									.setVenteAvecContrat(selectedVehicule
+											.isVenteAvecContrat());
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+						}
 
-							@Override
-							public void changed(ObservableValue observable,
-									Object oldValue, Object newValue) {
-								Vehicule selectedVehicule = (Vehicule) newValue;
-
-								VehiculeToBeModified
-										.setStockNumber(selectedVehicule
-												.getStockNumber());
-								VehiculeToBeModified
-										.setNoSerie(selectedVehicule
-												.getNoSerie());
-								VehiculeToBeModified.setMarque(selectedVehicule
-										.getMarque());
-								VehiculeToBeModified.setModele(selectedVehicule
-										.getModele());
-								VehiculeToBeModified.setAnnee(selectedVehicule
-										.getAnnee());
-								VehiculeToBeModified
-										.setCouleur(selectedVehicule
-												.getCouleur());
-								VehiculeToBeModified
-										.setTypeVendeur(selectedVehicule
-												.getTypeVendeur());
-								VehiculeToBeModified
-										.setDateAchat(selectedVehicule
-												.getDateAchat());
-								VehiculeToBeModified
-										.setNoVendeur(selectedVehicule
-												.getNoVendeur());
-								VehiculeToBeModified
-										.setEstVendu(selectedVehicule
-												.isEstVendu());
-								VehiculeToBeModified
-										.setPrixVente(selectedVehicule
-												.getPrixVente());
-								VehiculeToBeModified
-										.setTypeAcheteur(selectedVehicule
-												.getTypeAcheteur());
-								VehiculeToBeModified
-										.setNoAcheteur(selectedVehicule
-												.getNoAcheteur());
-								VehiculeToBeModified
-										.setPrixAcheteur(selectedVehicule
-												.getPrixAcheteur());
-								VehiculeToBeModified
-										.setDateVente(selectedVehicule
-												.getDateVente());
-								VehiculeToBeModified
-										.setaEuEchange(selectedVehicule
-												.isaEuEchange());
-								VehiculeToBeModified
-										.setaEuEntretien(selectedVehicule
-												.isaEuEntretien());
-								VehiculeToBeModified
-										.setTransmission(selectedVehicule
-												.getTransmission());
-								VehiculeToBeModified.setNoClef(selectedVehicule
-										.getNoClef());
-								VehiculeToBeModified
-										.setKilometrage(selectedVehicule
-												.getKilometrage());
-								VehiculeToBeModified
-										.setCilyndre(selectedVehicule
-												.getCilyndre());
-								VehiculeToBeModified.setCheque(selectedVehicule
-										.getCheque());
-								VehiculeToBeModified
-										.setPrixClient(selectedVehicule
-												.getPrixClient());
-								VehiculeToBeModified
-										.setVenteAvecContrat(selectedVehicule
-												.isVenteAvecContrat());
-
-							}
-						});
-
-			}
-		});
+					}
+				});
 
 		tableVehicule.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
-				if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
+				if (event.getButton().equals(MouseButton.PRIMARY)
+						&& event.getClickCount() == 2) {
 					// TODO Auto-generated method stub
 					try {
 						Stage stage = new Stage();
@@ -421,7 +406,6 @@ public class VehiculeListController implements Initializable {
 						+ "%'";
 			}
 		}
-
 		if (!EstVenduCombo.getValue().equals("Tous")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
@@ -581,6 +565,15 @@ public class VehiculeListController implements Initializable {
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
+				Platform.runLater(new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						RechercheChange();
+					}
+				});
+
 			}
 		});
 
