@@ -1,15 +1,17 @@
 package controller;
 
-import java.io.NotSerializableException;
+import java.math.BigDecimal;
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import model.VehiculeToBeModified;
+import model.CommonFunctions;
+import model.vehicule.VehiculeToBeModified;
 
 public class VehiculeDetailController implements Initializable {
 	@FXML
@@ -34,6 +36,14 @@ public class VehiculeDetailController implements Initializable {
 	private ComboBox estVenduCombo;
 	@FXML
 	private ComboBox transmissionCombo;
+	@FXML
+	private TextField prixAchatTextField;
+	@FXML
+	private TextField prixVenteTextField;
+	@FXML
+	private TextField prixEntretiensTextField;
+	@FXML
+	private TextField profitPerteTextField;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -44,17 +54,23 @@ public class VehiculeDetailController implements Initializable {
 	}
 
 	public void setFieldsWithVehiculeData() {
-		StringBuilder anneeFab = new StringBuilder();
-		anneeFab.append(VehiculeToBeModified.getAnnee());
-		String annee = anneeFab.toString();
+		StringBuilder sbAnneeFab = new StringBuilder();
+		sbAnneeFab.append(VehiculeToBeModified.getAnnee());
+		String anneeFab = sbAnneeFab.toString();
 
-		StringBuilder kilo = new StringBuilder();
-		kilo.append(VehiculeToBeModified.getKilometrage());
-		String kilometrage = kilo.toString();
+		StringBuilder sbKilo = new StringBuilder();
+		sbKilo.append(VehiculeToBeModified.getKilometrage());
+		String kilometrage = sbKilo.toString();
+
+		/*
+		 * StringBuilder sbPrixClient = new StringBuilder();
+		 * sbPrixClient.append(VehiculeToBeModified.getPrixClient()); String
+		 * prixClient = sbPrixClient.toString();
+		 */
 
 		noStockTextField.setText(VehiculeToBeModified.getStockNumber());
 		noSerieTextField.setText(VehiculeToBeModified.getNoSerie());
-		anneeFabTextField.setText(annee);
+		anneeFabTextField.setText(anneeFab);
 		marqueTextField.setText(VehiculeToBeModified.getMarque());
 		modeleTextField.setText(VehiculeToBeModified.getModele());
 		couleurTextField.setText(VehiculeToBeModified.getCouleur());
@@ -68,6 +84,12 @@ public class VehiculeDetailController implements Initializable {
 		}
 		transmissionCombo.getEditor().setText(
 				VehiculeToBeModified.getTransmission());
+		prixAchatTextField.setText(CommonFunctions.displayCurrency(VehiculeToBeModified
+				.getPrixAcheteur()));
+		prixVenteTextField.setText(CommonFunctions.displayCurrency(VehiculeToBeModified.getPrixVente()));
+
 	}
+
+
 
 }

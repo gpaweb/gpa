@@ -28,8 +28,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Vehicule;
-import model.VehiculeToBeModified;
+import model.vehicule.Vehicule;
+import model.vehicule.VehiculeToBeModified;
 
 public class VehiculeListController implements Initializable {
 

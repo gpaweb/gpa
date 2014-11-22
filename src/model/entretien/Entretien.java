@@ -1,4 +1,4 @@
-package model;
+package model.entretien;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+import model.Database;
+import model.LoginInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

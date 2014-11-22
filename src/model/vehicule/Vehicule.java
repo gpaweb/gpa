@@ -1,4 +1,4 @@
-package model;
+package model.vehicule;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -11,6 +11,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
+
+import model.Database;
+import model.LoginInfo;
 
 public class Vehicule {
 	private String noSerie;

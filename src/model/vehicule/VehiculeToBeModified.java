@@ -1,4 +1,4 @@
-package model;
+package model.vehicule;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
