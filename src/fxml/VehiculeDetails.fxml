@@ -29,8 +29,8 @@
             <TableView fx:id="tableEntretien" layoutX="10.0" layoutY="20.0" prefHeight="120.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
               <columns>
                 <TableColumn fx:id="dateEntretienCol" prefWidth="125.0" resizable="false" text="Date" />
-                <TableColumn fx:id="detaillantCol" prefWidth="300.0" resizable="false" text="Détaillant" />
-                  <TableColumn fx:id="descriptionCol" prefWidth="300.0" resizable="false" text="Description" />
+                <TableColumn fx:id="detaillantCol" prefWidth="290.0" resizable="false" text="Détaillant" />
+                  <TableColumn fx:id="descriptionCol" prefWidth="295.0" resizable="false" text="Description" />
                   <TableColumn fx:id="noFactureCol" minWidth="6.0" prefWidth="150.0" resizable="false" text="No Facture" />
                   <TableColumn fx:id="prixCol" minWidth="6.0" prefWidth="125.0" resizable="false" style="-fx-text-alignment: right;" text="Prix" />
               </columns>
@@ -304,7 +304,7 @@
                   </Label>
                </children>
             </HBox>
-            <Label fx:id="totalEntretienLabel" layoutX="826.0" layoutY="3.0" maxWidth="274.0" minWidth="177.0" prefHeight="15.0" prefWidth="177.0" text="Total :" textFill="WHITE">
+            <Label fx:id="totalEntretienLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="810.0" layoutY="3.0" maxWidth="274.0" minWidth="177.0" prefHeight="15.0" prefWidth="177.0" text="Total :" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
