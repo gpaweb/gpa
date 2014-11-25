@@ -7,15 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-import model.Database;
-import model.LoginInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import com.mysql.jdbc.PreparedStatement;
+import model.Database;
+import model.LoginInfo;
 
 public class Entretien {
-	private String type;
+	private String description;
 	private Date date;
 	private BigDecimal cout;
 	private String nomSousContractant;
@@ -27,10 +25,10 @@ public class Entretien {
 
 	}
 
-	public Entretien(String type, Date date, BigDecimal cout,
+	public Entretien(String description, Date date, BigDecimal cout,
 			String nomSousContractant, String noSerieVehicule,
 			String noStockVehicule, String noFacture) {
-		this.type = type;
+		this.description = description;
 		this.date = date;
 		this.cout = cout;
 		this.nomSousContractant = nomSousContractant;
@@ -40,11 +38,11 @@ public class Entretien {
 	}
 
 	public String getType() {
-		return type;
+		return description;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setType(String description) {
+		this.description = description;
 	}
 
 	public Date getDate() {
@@ -94,6 +92,69 @@ public class Entretien {
 	public void setNoFacture(String noFacture) {
 		this.noFacture = noFacture;
 	}
+	
+	public static BigDecimal getTotalEntretientVehicule(String noStock){
+		//BigDecimal totalEntretien = new BigDecimal(0.00);
+		double totalEntretien = 0;
+		Connection conn = null;
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			// STEP 2: Register JDBC driver
+						Class.forName(Database.getDriver());
+
+						// STEP 3: Open a connection
+						System.out.println("Connecting to database...");
+						
+						conn = DriverManager.getConnection(Database.getUrl(), LoginInfo.getUserName(), LoginInfo.getPassword());
+
+						// STEP 4: Executing a query
+						System.out.println("Creating statement");
+						stmt = conn.createStatement();
+						String sql;
+						sql = "Select * FROM Entretiens WHERE fldNoStock='"+noStock+"'"; 
+						System.out.println("SQL :"+sql);
+						rs = stmt.executeQuery(sql);
+
+						// STEP 5: Extract data from result set
+						while (rs.next()){
+							totalEntretien = totalEntretien + rs.getBigDecimal("fldPrix").doubleValue();
+						}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		BigDecimal total = new BigDecimal(totalEntretien);
+		return total;
+		
+	}
 
 	public static ObservableList<Entretien> listeDeEtretien(String sql) throws SQLException {
 		ObservableList<Entretien> entretiens = FXCollections.observableArrayList();
@@ -124,8 +185,8 @@ public class Entretien {
 				Entretien entretien = new Entretien();
 				
 				// Retrieve by column name
-				String type = rs.getString("fldTypeEntretient");
-				entretien.setType(type);
+				String description = rs.getString("fldTypeEntretient");
+				entretien.setType(description);
 				Date date = rs.getDate("fldDateEffectue");
 				entretien.setDate(date);
 				BigDecimal cout = rs.getBigDecimal("fldPrix");

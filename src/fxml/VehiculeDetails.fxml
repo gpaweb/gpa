@@ -26,7 +26,15 @@
                   </Label>
                </children>
             </Pane>
-            <ListView layoutX="10.0" layoutY="20.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+            <TableView fx:id="tableEntretien" layoutX="10.0" layoutY="20.0" prefHeight="120.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+              <columns>
+                <TableColumn fx:id="dateEntretienCol" prefWidth="125.0" resizable="false" text="Date" />
+                <TableColumn fx:id="detaillantCol" prefWidth="300.0" resizable="false" text="Détaillant" />
+                  <TableColumn fx:id="descriptionCol" prefWidth="300.0" resizable="false" text="Description" />
+                  <TableColumn fx:id="noFactureCol" minWidth="6.0" prefWidth="150.0" resizable="false" text="No Facture" />
+                  <TableColumn fx:id="prixCol" minWidth="6.0" prefWidth="125.0" resizable="false" style="-fx-text-alignment: right;" text="Prix" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="97.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
@@ -227,7 +235,7 @@
                </GridPane.margin></TextField>
          </children>
       </GridPane>
-      <Pane layoutX="10.0" layoutY="502.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="460.0">
+      <Pane layoutX="10.0" layoutY="502.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="480.0">
          <children>
             <Label layoutY="3.0" text="Informations transactionnel" textFill="WHITE">
                <padding>
@@ -236,7 +244,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="10.0" layoutY="523.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="490.0" style="-fx-background-color: navy;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="480.0">
+      <Pane layoutX="10.0" layoutY="523.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="490.0" style="-fx-background-color: navy;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="500.0">
          <children>
             <Label layoutY="3.0" text="Acheté de" textFill="WHITE">
                <padding>
@@ -245,7 +253,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="524.0" layoutY="523.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="490.0" style="-fx-background-color: navy;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="480.0">
+      <Pane layoutX="524.0" layoutY="523.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="490.0" style="-fx-background-color: navy;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="500.0">
          <children>
             <Label layoutY="3.0" text="Vendu à" textFill="WHITE">
                <padding>
@@ -254,7 +262,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="10.0" layoutY="460.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="435.0">
+      <Pane layoutX="10.0" layoutY="460.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="455.0">
          <children>
             <HBox layoutX="14.0" layoutY="2.0">
                <children>
@@ -296,6 +304,14 @@
                   </Label>
                </children>
             </HBox>
+            <Label fx:id="totalEntretienLabel" layoutX="826.0" layoutY="3.0" maxWidth="274.0" minWidth="177.0" prefHeight="15.0" prefWidth="177.0" text="Total :" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
          </children>
       </Pane>
    </children>

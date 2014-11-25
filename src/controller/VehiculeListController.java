@@ -342,7 +342,6 @@ public class VehiculeListController implements Initializable {
 			tableVehicule.setItems(listeVehicule);
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e.getStackTrace());
 		}
 
