@@ -221,11 +221,11 @@
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin></TextField>
-            <TextField fx:id="prixEntretiensTextField" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <TextField fx:id="prixEntretiensTextField" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin></TextField>
-            <TextField fx:id="profitPerteTextField" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <TextField fx:id="profitPerteTextField" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin></TextField>
