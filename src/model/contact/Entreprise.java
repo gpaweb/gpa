@@ -28,7 +28,7 @@ public class Entreprise extends Intervenants {
 
 	public static Entreprise getEntreprise(String noEntreprise) {
 		Entreprise entreprise = new Entreprise();
-		
+
 		// STEP 1: Declare the needed objects
 		Connection conn = null;
 		java.sql.Statement stmt = null;
@@ -48,26 +48,27 @@ public class Entreprise extends Intervenants {
 			System.out.println("Creating statement");
 			stmt = conn.createStatement();
 			// String sql;
-			String sql = "Select * FROM Entreprises WHERE fldNoEntreprise ="
-					+ noEntreprise+" LIMIT 1";
+			String sql = "Select * FROM Entreprises WHERE fldNoEntreprise = "
+					+ noEntreprise;
 
 			System.out.println("SQL :" + sql);
 			rs = stmt.executeQuery(sql);
 
 			// STEP 5: Extract data from result set
-			entreprise.setNom(rs.getString("fldNom"));
-			entreprise.setAdresse(rs.getString("fldAdresse"));
-			entreprise.setTelephone(rs.getString("fldTelephone"));
-			entreprise.setCodePostal(rs.getString("fldCodePostal"));
-			entreprise.setEmail(rs.getString("fldEmail"));
-			entreprise.setContact(rs.getString("fldContact"));
-			entreprise.setVille(rs.getString("fldVille"));
-			entreprise.setPay(rs.getString("fldPay"));
-			entreprise.setProvince(rs.getString("fldProvince"));
-			
+			while (rs.next()) {
+				entreprise.setNom(rs.getString("fldNom"));
+				entreprise.setAdresse(rs.getString("fldAdresse"));
+				entreprise.setTelephone(rs.getString("fldTelephone"));
+				entreprise.setCodePostal(rs.getString("fldCodePostal"));
+				entreprise.setEmail(rs.getString("fldEmail"));
+				entreprise.setContact(rs.getString("fldContact"));
+				entreprise.setVille(rs.getString("fldVille"));
+				entreprise.setPay(rs.getString("fldPay"));
+				entreprise.setProvince(rs.getString("fldProvince"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			if (rs != null) {
 				try {
@@ -92,10 +93,8 @@ public class Entreprise extends Intervenants {
 					e.printStackTrace();
 				}
 			}
-			
-			
-		}
 
+		}
 
 		return entreprise;
 	}

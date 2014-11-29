@@ -31,7 +31,7 @@ public class Particulier extends Intervenants {
 		Connection conn = null;
 		java.sql.Statement stmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			// STEP 2: Register JDBC driver
 			Class.forName(Database.getDriver());
@@ -46,26 +46,27 @@ public class Particulier extends Intervenants {
 			System.out.println("Creating statement");
 			stmt = conn.createStatement();
 			// String sql;
-			String sql = "Select * FROM Particuliers WHERE fldNoParticulier ="
-					+ noParticulier+" LIMIT 1";
+			String sql = "Select * FROM Particuliers WHERE fldNoParticulier = "
+					+ noParticulier;
 
 			System.out.println("SQL :" + sql);
 			rs = stmt.executeQuery(sql);
 
 			// STEP 5: Extract data from result set
-			particulier.setNom(rs.getString("fldNom"));
-			particulier.setPrenom(rs.getString("fldPrenom"));
-			particulier.setAdresse(rs.getString("fldAdresse"));
-			particulier.setTelephone(rs.getString("fldTelephone"));
-			particulier.setCodePostal(rs.getString("fldCodePostal"));
-			particulier.setEmail(rs.getString("fldEmail"));
-			particulier.setVille(rs.getString("fldVille"));
-			particulier.setPay(rs.getString("fldPay"));
-			particulier.setProvince(rs.getString("fldProvince"));
-			
+			while (rs.next()) {
+				particulier.setNom(rs.getString("fldNom"));
+				particulier.setPrenom(rs.getString("fldPrenom"));
+				particulier.setAdresse(rs.getString("fldAdresse"));
+				particulier.setTelephone(rs.getString("fldTelephone"));
+				particulier.setCodePostal(rs.getString("fldCodePostal"));
+				particulier.setEmail(rs.getString("fldEmail"));
+				particulier.setVille(rs.getString("fldVille"));
+				particulier.setPay(rs.getString("fldPay"));
+				particulier.setProvince(rs.getString("fldProvince"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			if (rs != null) {
 				try {
@@ -90,10 +91,8 @@ public class Particulier extends Intervenants {
 					e.printStackTrace();
 				}
 			}
-			
-			
-		}
 
+		}
 
 		return particulier;
 	}

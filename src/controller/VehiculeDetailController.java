@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
@@ -74,6 +75,26 @@ public class VehiculeDetailController implements Initializable {
 	private TextField profitPerteTextField;
 	@FXML
 	private Label totalEntretienLabel;
+	@FXML
+	private Label vendeurParticulierPrenomLabel;
+	@FXML
+	private Label vendeurParticulierNomLabel;
+	@FXML
+	private Label vendeurParticulierTelephoneLabel;
+	@FXML
+	private Label vendeurParticulierAdresseLabel;
+	@FXML
+	private Label vendeurParticulierVilleLabel;
+	@FXML
+	private Label vendeurParticulierProvinceLabel;
+	@FXML
+	private Label vendeurParticulierPayLabel;
+	@FXML
+	private Label vendeurParticulierCodePostalLabel;
+	@FXML
+	private Label vendeurParticulierCourrielLabel;
+	@FXML
+	private GridPane vendeurParticulierGridPane;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -107,12 +128,6 @@ public class VehiculeDetailController implements Initializable {
 		sbKilo.append(VehiculeToBeModified.getKilometrage());
 		String kilometrage = sbKilo.toString();
 
-		/*
-		 * StringBuilder sbPrixClient = new StringBuilder();
-		 * sbPrixClient.append(VehiculeToBeModified.getPrixClient()); String
-		 * prixClient = sbPrixClient.toString();
-		 */
-
 		noStockTextField.setText(VehiculeToBeModified.getStockNumber());
 		noSerieTextField.setText(VehiculeToBeModified.getNoSerie());
 		anneeFabTextField.setText(anneeFab);
@@ -129,44 +144,10 @@ public class VehiculeDetailController implements Initializable {
 		}
 		transmissionCombo.getEditor().setText(
 				VehiculeToBeModified.getTransmission());
-		prixAchatTextField.setText(CommonFunctions
-				.displayCurrency(VehiculeToBeModified.getPrixAcheteur()));
-		if (VehiculeToBeModified.isEstVendu() == true) {
-			prixVenteTextField.setText(CommonFunctions
-					.displayCurrency(VehiculeToBeModified.getPrixVente()));
-		}
-		double prixAvecEntretiens;
-		double prixEntretiens = Entretien.getTotalEntretientVehicule(
-				VehiculeToBeModified.getStockNumber()).doubleValue();
 
-		prixAvecEntretiens = VehiculeToBeModified.getPrixAcheteur()
-				.doubleValue() + prixEntretiens;
-		prixEntretiensTextField.setText(CommonFunctions
-				.displayCurrency(prixAvecEntretiens));
-		if (VehiculeToBeModified.isEstVendu() == true) {
-			double profitPerte = VehiculeToBeModified.getPrixVente()
-					.doubleValue() - prixAvecEntretiens;
-			profitPerteTextField.setText(CommonFunctions
-					.displayCurrency(profitPerte));
-		}
-		if(VehiculeToBeModified.getNoAcheteur() == "0"){
-			// Si l'acheteur est un particulier
-			Particulier particulier = Particulier.getParticulier(VehiculeToBeModified.getNoAcheteur());
-		}else{
-			// Si l'acheteur est une entreprise
-			Entreprise entreprise = Entreprise.getEntreprise(VehiculeToBeModified.getNoAcheteur());
-			
-		}
-		
-		if(VehiculeToBeModified.getNoVendeur() == "0"){
-			// Si l'acheteur est un particulier
-			Particulier particulier = Particulier.getParticulier(VehiculeToBeModified.getNoVendeur());
-			
-		}else{
-			// Si l'acheteur est une entreprise
-			Entreprise entreprise = Entreprise.getEntreprise(VehiculeToBeModified.getNoVendeur());
-			
-		}
+		setInformationComptable();
+		setIntervenantsForVehicule();
+
 	}
 
 	public void fillEntretienTable(ObservableList<Entretien> listeEntretiens) {
@@ -231,4 +212,65 @@ public class VehiculeDetailController implements Initializable {
 		}
 	}
 
+	public void setIntervenantsForVehicule() {
+		/*if (VehiculeToBeModified.getTypeAcheteur() == "1") {
+			// Si l'acheteur est un particulier
+			Particulier particulier = Particulier
+					.getParticulier(VehiculeToBeModified.getNoAcheteur());
+		} else {
+			// Si l'acheteur est une entreprise
+			Entreprise entreprise = Entreprise
+					.getEntreprise(VehiculeToBeModified.getNoAcheteur());
+
+		}*/
+		
+		System.out.println("Type de vendeur :"
+				+ VehiculeToBeModified.getTypeVendeur());
+		if (VehiculeToBeModified.getTypeVendeur().equals("1")) {
+			// Si l'acheteur est un particulier
+			System.out.println("HERE");
+			Particulier particulier = Particulier
+					.getParticulier(VehiculeToBeModified.getNoVendeur());
+			vendeurParticulierPrenomLabel.setText(particulier.getPrenom());
+			vendeurParticulierNomLabel.setText(particulier.getNom());
+			vendeurParticulierTelephoneLabel
+					.setText(particulier.getTelephone());
+			vendeurParticulierAdresseLabel.setText(particulier.getAdresse());
+			vendeurParticulierVilleLabel.setText(particulier.getVille());
+			vendeurParticulierProvinceLabel.setText(particulier.getProvince());
+			vendeurParticulierPayLabel.setText(particulier.getPay());
+			vendeurParticulierCodePostalLabel.setText(particulier
+					.getCodePostal());
+			vendeurParticulierCourrielLabel.setText(particulier.getEmail());
+		} else {
+			// Si l'acheteur est une entreprise
+			vendeurParticulierGridPane.setVisible(false);
+			Entreprise entreprise = Entreprise
+					.getEntreprise(VehiculeToBeModified.getNoVendeur());
+
+		}
+	}
+
+	public void setInformationComptable() {
+		prixAchatTextField.setText(CommonFunctions
+				.displayCurrency(VehiculeToBeModified.getPrixAcheteur()));
+		if (VehiculeToBeModified.isEstVendu() == true) {
+			prixVenteTextField.setText(CommonFunctions
+					.displayCurrency(VehiculeToBeModified.getPrixVente()));
+		}
+		double prixAvecEntretiens;
+		double prixEntretiens = Entretien.getTotalEntretientVehicule(
+				VehiculeToBeModified.getStockNumber()).doubleValue();
+
+		prixAvecEntretiens = VehiculeToBeModified.getPrixAcheteur()
+				.doubleValue() + prixEntretiens;
+		prixEntretiensTextField.setText(CommonFunctions
+				.displayCurrency(prixAvecEntretiens));
+		if (VehiculeToBeModified.isEstVendu() == true) {
+			double profitPerte = VehiculeToBeModified.getPrixVente()
+					.doubleValue() - prixAvecEntretiens;
+			profitPerteTextField.setText(CommonFunctions
+					.displayCurrency(profitPerte));
+		}
+	}
 }
