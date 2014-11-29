@@ -22,6 +22,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 import model.CommonFunctions;
+import model.contact.Entreprise;
+import model.contact.Particulier;
 import model.entretien.Entretien;
 import model.vehicule.VehiculeToBeModified;
 
@@ -146,6 +148,24 @@ public class VehiculeDetailController implements Initializable {
 					.doubleValue() - prixAvecEntretiens;
 			profitPerteTextField.setText(CommonFunctions
 					.displayCurrency(profitPerte));
+		}
+		if(VehiculeToBeModified.getNoAcheteur() == "0"){
+			// Si l'acheteur est un particulier
+			Particulier particulier = Particulier.getParticulier(VehiculeToBeModified.getNoAcheteur());
+		}else{
+			// Si l'acheteur est une entreprise
+			Entreprise entreprise = Entreprise.getEntreprise(VehiculeToBeModified.getNoAcheteur());
+			
+		}
+		
+		if(VehiculeToBeModified.getNoVendeur() == "0"){
+			// Si l'acheteur est un particulier
+			Particulier particulier = Particulier.getParticulier(VehiculeToBeModified.getNoVendeur());
+			
+		}else{
+			// Si l'acheteur est une entreprise
+			Entreprise entreprise = Entreprise.getEntreprise(VehiculeToBeModified.getNoVendeur());
+			
 		}
 	}
 

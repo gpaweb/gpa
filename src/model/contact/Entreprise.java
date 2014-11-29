@@ -1,37 +1,39 @@
 package model.contact;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import model.Database;
 import model.LoginInfo;
+import model.entretien.Entretien;
 
-public class Particulier extends Intervenants {
-	private String prenom;
+public class Entreprise extends Intervenants {
+	private String contact;
 
-	public Particulier() {
+	public Entreprise() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public String getPrenom() {
-		return prenom;
+	public String getContact() {
+		return contact;
 	}
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 
-	public static Particulier getParticulier(String noParticulier) {
-		Particulier particulier = new Particulier();
-
+	public static Entreprise getEntreprise(String noEntreprise) {
+		Entreprise entreprise = new Entreprise();
+		
 		// STEP 1: Declare the needed objects
 		Connection conn = null;
 		java.sql.Statement stmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			// STEP 2: Register JDBC driver
 			Class.forName(Database.getDriver());
@@ -46,22 +48,22 @@ public class Particulier extends Intervenants {
 			System.out.println("Creating statement");
 			stmt = conn.createStatement();
 			// String sql;
-			String sql = "Select * FROM Particuliers WHERE fldNoParticulier ="
-					+ noParticulier+" LIMIT 1";
+			String sql = "Select * FROM Entreprises WHERE fldNoEntreprise ="
+					+ noEntreprise+" LIMIT 1";
 
 			System.out.println("SQL :" + sql);
 			rs = stmt.executeQuery(sql);
 
 			// STEP 5: Extract data from result set
-			particulier.setNom(rs.getString("fldNom"));
-			particulier.setPrenom(rs.getString("fldPrenom"));
-			particulier.setAdresse(rs.getString("fldAdresse"));
-			particulier.setTelephone(rs.getString("fldTelephone"));
-			particulier.setCodePostal(rs.getString("fldCodePostal"));
-			particulier.setEmail(rs.getString("fldEmail"));
-			particulier.setVille(rs.getString("fldVille"));
-			particulier.setPay(rs.getString("fldPay"));
-			particulier.setProvince(rs.getString("fldProvince"));
+			entreprise.setNom(rs.getString("fldNom"));
+			entreprise.setAdresse(rs.getString("fldAdresse"));
+			entreprise.setTelephone(rs.getString("fldTelephone"));
+			entreprise.setCodePostal(rs.getString("fldCodePostal"));
+			entreprise.setEmail(rs.getString("fldEmail"));
+			entreprise.setContact(rs.getString("fldContact"));
+			entreprise.setVille(rs.getString("fldVille"));
+			entreprise.setPay(rs.getString("fldPay"));
+			entreprise.setProvince(rs.getString("fldProvince"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,6 +97,7 @@ public class Particulier extends Intervenants {
 		}
 
 
-		return particulier;
+		return entreprise;
 	}
+
 }

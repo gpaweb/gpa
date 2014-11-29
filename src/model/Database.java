@@ -8,9 +8,10 @@ import java.sql.SQLException;
 public final class Database {
 	// JDBC driver name and database URL
 	private static String driver = "com.mysql.jdbc.Driver";
-	private static String url = "jdbc:mysql://localhost/gpa2k15?zeroDateTimeBehavior=convertToNull";
-	// Database credentials
 	private static String dbName = "gpa2k15";
+	private static String url = "jdbc:mysql://localhost/"+dbName+"?zeroDateTimeBehavior=convertToNull";
+	// Database credentials
+	
 
 	private Database() {
 		// super();
@@ -43,7 +44,9 @@ public final class Database {
 					password);
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
+			
 		} finally {
 			if (conn != null) {
 				try {
