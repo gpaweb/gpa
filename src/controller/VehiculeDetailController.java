@@ -76,26 +76,28 @@ public class VehiculeDetailController implements Initializable {
 	@FXML
 	private Label totalEntretienLabel;
 	@FXML
-	private Label vendeurParticulierPrenomLabel;
+	private Label vendeurPrenomContactLabel;
 	@FXML
-	private Label vendeurParticulierNomLabel;
+	private Label vendeurNomLabel;
 	@FXML
-	private Label vendeurParticulierTelephoneLabel;
+	private Label vendeurTelephoneLabel;
 	@FXML
-	private Label vendeurParticulierAdresseLabel;
+	private Label vendeurAdresseLabel;
 	@FXML
-	private Label vendeurParticulierVilleLabel;
+	private Label vendeurVilleLabel;
 	@FXML
-	private Label vendeurParticulierProvinceLabel;
+	private Label vendeurProvinceLabel;
 	@FXML
-	private Label vendeurParticulierPayLabel;
+	private Label vendeurPayLabel;
 	@FXML
-	private Label vendeurParticulierCodePostalLabel;
+	private Label vendeurCodePostalLabel;
 	@FXML
-	private Label vendeurParticulierCourrielLabel;
+	private Label vendeurCourrielLabel;
 	@FXML
-	private GridPane vendeurParticulierGridPane;
-
+	private Label lblVendeurPrenomContact;
+	@FXML
+	private GridPane vendeurGridPane;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -228,25 +230,38 @@ public class VehiculeDetailController implements Initializable {
 				+ VehiculeToBeModified.getTypeVendeur());
 		if (VehiculeToBeModified.getTypeVendeur().equals("1")) {
 			// Si l'acheteur est un particulier
-			System.out.println("HERE");
+			
 			Particulier particulier = Particulier
 					.getParticulier(VehiculeToBeModified.getNoVendeur());
-			vendeurParticulierPrenomLabel.setText(particulier.getPrenom());
-			vendeurParticulierNomLabel.setText(particulier.getNom());
-			vendeurParticulierTelephoneLabel
+			lblVendeurPrenomContact.setText("Prénom");
+			vendeurPrenomContactLabel.setText(particulier.getPrenom());
+			vendeurNomLabel.setText(particulier.getNom());
+			vendeurTelephoneLabel
 					.setText(particulier.getTelephone());
-			vendeurParticulierAdresseLabel.setText(particulier.getAdresse());
-			vendeurParticulierVilleLabel.setText(particulier.getVille());
-			vendeurParticulierProvinceLabel.setText(particulier.getProvince());
-			vendeurParticulierPayLabel.setText(particulier.getPay());
-			vendeurParticulierCodePostalLabel.setText(particulier
+			vendeurAdresseLabel.setText(particulier.getAdresse());
+			vendeurVilleLabel.setText(particulier.getVille());
+			vendeurProvinceLabel.setText(particulier.getProvince());
+			vendeurPayLabel.setText(particulier.getPay());
+			vendeurCodePostalLabel.setText(particulier
 					.getCodePostal());
-			vendeurParticulierCourrielLabel.setText(particulier.getEmail());
+			vendeurCourrielLabel.setText(particulier.getEmail());
 		} else {
 			// Si l'acheteur est une entreprise
-			vendeurParticulierGridPane.setVisible(false);
 			Entreprise entreprise = Entreprise
 					.getEntreprise(VehiculeToBeModified.getNoVendeur());
+			lblVendeurPrenomContact.setText("Contact");
+			vendeurPrenomContactLabel.setText(entreprise.getContact());
+			vendeurNomLabel.setText(entreprise.getNom());
+			vendeurTelephoneLabel
+					.setText(entreprise.getTelephone());
+			vendeurAdresseLabel.setText(entreprise.getAdresse());
+			vendeurVilleLabel.setText(entreprise.getVille());
+			vendeurProvinceLabel.setText(entreprise.getProvince());
+			vendeurPayLabel.setText(entreprise.getPay());
+			vendeurCodePostalLabel.setText(entreprise
+					.getCodePostal());
+			vendeurCourrielLabel.setText(entreprise.getEmail());
+
 
 		}
 	}

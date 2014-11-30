@@ -26,7 +26,7 @@
 										</Label>
 									</children>
 								</Pane>
-								<GridPane layoutY="26.0" minHeight="115.0" minWidth="800.0" prefHeight="120.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+								<GridPane layoutY="26.0" minHeight="115.0" minWidth="800.0" prefHeight="171.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 									<children>
 										<Label fx:id="NoStockLabel" onMouseClicked="#setFocusNoStock" text="No. de stock">
 											<GridPane.margin>
@@ -187,6 +187,46 @@
 												<Insets left="10.0" right="10.0" />
 											</GridPane.margin>
 										</TextField>
+                              <DatePicker GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </DatePicker>
+                              <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </DatePicker>
+                              <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </DatePicker>
+                              <DatePicker GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </DatePicker>
+                              <Label text="Acheté de" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Acheté à" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Vendu de" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Vendu à" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
 										
 									</children>
 									<columnConstraints>
@@ -202,9 +242,11 @@
 										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 									</rowConstraints>
 								</GridPane>
-								<TableView fx:id="tableVehicule" layoutX="10.0" layoutY="183.0" minHeight="300.0" minWidth="200.0" prefHeight="300.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="183.0">
+								<TableView fx:id="tableVehicule" layoutX="10.0" layoutY="183.0" minHeight="300.0" minWidth="200.0" prefHeight="300.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="235.0">
 									<columns>
 										<TableColumn minWidth="33.0" prefWidth="33.0" />
 										<TableColumn fx:id="noStockCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="No. de stock" />
@@ -217,7 +259,7 @@
 										<TableColumn fx:id="kilometrageCol" maxWidth="-1.0" minWidth="122.0" prefWidth="121.0" text="Kilométrage" />
 									</columns>
 								</TableView>
-								<Pane layoutX="10.0" layoutY="163.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="163.0">
+								<Pane layoutX="10.0" layoutY="163.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="215.0">
 									<children>
 										<Label layoutY="3.0" text="Liste de véhicules" textFill="WHITE">
 											<padding>
@@ -226,7 +268,7 @@
 										</Label>
 									</children>
 								</Pane>
-								<Pane layoutX="10.0" layoutY="483.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="483.0">
+								<Pane layoutX="10.0" layoutY="483.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="535.0">
 									<children>
 										<HBox fx:id="AddVehiculeHBox" layoutX="7.0" layoutY="2.0">
 											<children>
