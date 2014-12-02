@@ -108,14 +108,6 @@
 												<Cursor fx:constant="HAND" />
 											</cursor>
 										</Label>
-										<Label fx:id="TransmissionLabel" onMouseClicked="#setFocusTransmission" text="Transmission" GridPane.columnIndex="2" GridPane.rowIndex="2">
-											<GridPane.margin>
-												<Insets left="10.0" right="10.0" />
-											</GridPane.margin>
-											<cursor>
-												<Cursor fx:constant="HAND" />
-											</cursor>
-										</Label>
 										<Label fx:id="MarqueLabel" onMouseClicked="#setFocusMarque" text="Marque" GridPane.columnIndex="3">
 											<GridPane.margin>
 												<Insets left="10.0" right="10.0" />
@@ -132,7 +124,7 @@
 												<Cursor fx:constant="HAND" />
 											</cursor>
 										</Label>
-										<Label fx:id="CilyndreLabel" onMouseClicked="#setFocusCilyndre" text="Cilyndré" GridPane.columnIndex="3" GridPane.rowIndex="2">
+										<Label fx:id="KilometrageDeLabel" onMouseClicked="#setFocusKilometrageDe" text="Kilométrage de" GridPane.rowIndex="4">
 											<GridPane.margin>
 												<Insets left="10.0" right="10.0" />
 											</GridPane.margin>
@@ -140,28 +132,8 @@
 												<Cursor fx:constant="HAND" />
 											</cursor>
 										</Label>
-										<Label fx:id="KilometrageDeLabel" onMouseClicked="#setFocusKilometrageDe" text="Kilométrage de" GridPane.columnIndex="4" GridPane.rowIndex="2">
-											<GridPane.margin>
-												<Insets left="10.0" right="10.0" />
-											</GridPane.margin>
-											<cursor>
-												<Cursor fx:constant="HAND" />
-											</cursor>
-										</Label>
-										<ComboBox fx:id="TransmissionCombo" prefWidth="200.0" promptText="Manuelle" GridPane.columnIndex="2" GridPane.rowIndex="3">
-											<GridPane.margin>
-												<Insets left="10.0" right="10.0" />
-											</GridPane.margin>
-										</ComboBox>
 										
-										
-										<TextField fx:id="CilyndreTextField" onAction="#RechercheChange" GridPane.columnIndex="3" GridPane.rowIndex="3">
-											<GridPane.margin>
-												<Insets left="10.0" right="10.0" />
-											</GridPane.margin>
-										</TextField>
-										
-										<TextField fx:id="KilometrageDeTextField" onAction="#RechercheChange" GridPane.columnIndex="4" GridPane.rowIndex="3">
+										<TextField fx:id="KilometrageDeTextField" onAction="#RechercheChange" GridPane.rowIndex="5">
 											<GridPane.margin>
 												<Insets left="10.0" right="10.0" />
 											</GridPane.margin>
@@ -174,7 +146,7 @@
 												<Cursor fx:constant="HAND" />
 											</cursor>
 										</Label>
-										<Label fx:id="KilometrageALabel" onMouseClicked="#setFocusKilometrageA" text="Kilométrage à" GridPane.columnIndex="5" GridPane.rowIndex="2">
+										<Label fx:id="KilometrageALabel" onMouseClicked="#setFocusKilometrageA" text="Kilométrage à" GridPane.columnIndex="1" GridPane.rowIndex="4">
 											<GridPane.margin>
 												<Insets left="10.0" right="10.0" />
 											</GridPane.margin>
@@ -182,50 +154,62 @@
 												<Cursor fx:constant="HAND" />
 											</cursor>
 										</Label>
-										<TextField fx:id="KilometrageATextField" onAction="#RechercheChange" GridPane.columnIndex="5" GridPane.rowIndex="3">
+										<TextField fx:id="KilometrageATextField" onAction="#RechercheChange" GridPane.columnIndex="1" GridPane.rowIndex="5">
 											<GridPane.margin>
 												<Insets left="10.0" right="10.0" />
 											</GridPane.margin>
 										</TextField>
-                              <DatePicker GridPane.rowIndex="5">
+                              <DatePicker fx:id="acheterDeDatePicker" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </DatePicker>
-                              <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <DatePicker fx:id="acheterADatePicker" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </DatePicker>
-                              <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="5">
+                              <DatePicker fx:id="venduDeDatePicker" GridPane.columnIndex="4" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </DatePicker>
-                              <DatePicker GridPane.columnIndex="3" GridPane.rowIndex="5">
+                              <DatePicker fx:id="venduADatePicker" GridPane.columnIndex="5" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
                               </DatePicker>
-                              <Label text="Acheté de" GridPane.rowIndex="4">
+                              <Label fx:id="acheterDeLabel" onMouseClicked="#setFocusAcheterDe" text="Acheté de" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Label>
-                              <Label text="Acheté à" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <Label fx:id="acheterALabel" onMouseClicked="#setFocusAcheterA" text="Acheté à" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <padding>
                                     <Insets left="10.0" right="10.0" />
                                  </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Label>
-                              <Label text="Vendu de" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                              <Label fx:id="venduDeLabel" onMouseClicked="#setFocusVenduDe" text="Vendu de" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                  <padding>
                                     <Insets left="10.0" right="10.0" />
                                  </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Label>
-                              <Label text="Vendu à" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <Label fx:id="venduALabel" onMouseClicked="#setFocusVenduA" text="Vendu à" GridPane.columnIndex="5" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </GridPane.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Label>
 										
 									</children>
@@ -249,14 +233,14 @@
 								<TableView fx:id="tableVehicule" layoutX="10.0" layoutY="183.0" minHeight="300.0" minWidth="200.0" prefHeight="300.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="235.0">
 									<columns>
 										<TableColumn minWidth="33.0" prefWidth="33.0" />
-										<TableColumn fx:id="noStockCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="No. de stock" />
-										<TableColumn fx:id="noSerieCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="No. de série" />
-										<TableColumn fx:id="anneeCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Année" />
-										<TableColumn fx:id="marqueCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Marque" />
-										<TableColumn fx:id="modeleCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Modèle" />
-										<TableColumn fx:id="couleurCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Couleur" />
-										<TableColumn fx:id="transmissionCol" maxWidth="-1.0" minWidth="121.0" prefWidth="121.0" text="Transmission" />
-										<TableColumn fx:id="kilometrageCol" maxWidth="-1.0" minWidth="122.0" prefWidth="121.0" text="Kilométrage" />
+										<TableColumn fx:id="noStockCol" maxWidth="-1.0" minWidth="121.0" prefWidth="-1.0" text="No. de stock" />
+										<TableColumn fx:id="noSerieCol" maxWidth="-1.0" minWidth="121.0" prefWidth="-1.0" text="No. de série" />
+										<TableColumn fx:id="anneeCol" maxWidth="-1.0" minWidth="121.0" prefWidth="-1.0" text="Année" />
+										<TableColumn fx:id="marqueCol" maxWidth="-1.0" minWidth="121.0" prefWidth="-1.0" text="Marque" />
+										<TableColumn fx:id="modeleCol" maxWidth="-1.0" minWidth="121.0" prefWidth="-1.0" text="Modèle" />
+										<TableColumn fx:id="couleurCol" maxWidth="-1.0" minWidth="121.0" prefWidth="-1.0" text="Couleur" />
+										<TableColumn fx:id="transmissionCol" maxWidth="-1.0" minWidth="121.0" prefWidth="-1.0" text="Transmission" />
+										<TableColumn fx:id="kilometrageCol" maxWidth="-1.0" minWidth="122.0" prefWidth="-1.0" text="Kilométrage" />
 									</columns>
 								</TableView>
 								<Pane layoutX="10.0" layoutY="163.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="215.0">

@@ -5,6 +5,8 @@ import java.math.RoundingMode;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -12,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -75,6 +78,8 @@ public class VehiculeDetailController implements Initializable {
 	private TextField profitPerteTextField;
 	@FXML
 	private Label totalEntretienLabel;
+	@FXML
+	private DatePicker vendeurDateDatePicker;
 	@FXML
 	private Label vendeurPrenomContactLabel;
 	@FXML
@@ -230,9 +235,10 @@ public class VehiculeDetailController implements Initializable {
 				+ VehiculeToBeModified.getTypeVendeur());
 		if (VehiculeToBeModified.getTypeVendeur().equals("1")) {
 			// Si l'acheteur est un particulier
-			
 			Particulier particulier = Particulier
 					.getParticulier(VehiculeToBeModified.getNoVendeur());
+			LocalDate tempDate = LocalDate.parse(VehiculeToBeModified.getDateAchat().toString());
+			vendeurDateDatePicker.setValue(tempDate);
 			lblVendeurPrenomContact.setText("Prénom");
 			vendeurPrenomContactLabel.setText(particulier.getPrenom());
 			vendeurNomLabel.setText(particulier.getNom());
@@ -245,10 +251,13 @@ public class VehiculeDetailController implements Initializable {
 			vendeurCodePostalLabel.setText(particulier
 					.getCodePostal());
 			vendeurCourrielLabel.setText(particulier.getEmail());
-		} else {
+		} else if (VehiculeToBeModified.getTypeVendeur().equals("2")){
 			// Si l'acheteur est une entreprise
 			Entreprise entreprise = Entreprise
 					.getEntreprise(VehiculeToBeModified.getNoVendeur());
+			LocalDate tempDate = LocalDate.parse(VehiculeToBeModified.getDateAchat().toString());
+			vendeurDateDatePicker.setValue(tempDate);
+
 			lblVendeurPrenomContact.setText("Contact");
 			vendeurPrenomContactLabel.setText(entreprise.getContact());
 			vendeurNomLabel.setText(entreprise.getNom());

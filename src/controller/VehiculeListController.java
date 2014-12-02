@@ -19,6 +19,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -73,11 +75,26 @@ public class VehiculeListController implements Initializable {
 	@FXML
 	private ComboBox TransmissionCombo;
 	@FXML
-	private TextField CilyndreTextField;
-	@FXML
 	private TextField KilometrageDeTextField;
 	@FXML
 	private TextField KilometrageATextField;
+	@FXML
+	private Label acheterDeLabel;
+	@FXML
+	private DatePicker acheterDeDatePicker;
+	@FXML
+	private Label acheterALabel;
+	@FXML
+	private DatePicker acheterADatePicker;
+	@FXML
+	private Label venduDeLabel;
+	@FXML
+	private DatePicker venduDeDatePicker;
+	@FXML
+	private Label venduALabel;
+	@FXML
+	private DatePicker venduADatePicker;
+	
 	@FXML
 	private HBox AddVehiculeHBox;
 
@@ -216,8 +233,8 @@ public class VehiculeListController implements Initializable {
 			}
 		});
 
-		TransmissionCombo.getItems().addAll("Tous", "Automatique", "Manuelle");
-		TransmissionCombo.setValue("Tous");
+	//	TransmissionCombo.getItems().addAll("Tous", "Automatique", "Manuelle");
+	//	TransmissionCombo.setValue("Tous");
 
 		EstVenduCombo.getItems().addAll("Tous", "Oui", "Non");
 		EstVenduCombo.setValue("Tous");
@@ -294,16 +311,28 @@ public class VehiculeListController implements Initializable {
 		TransmissionCombo.requestFocus();
 	}
 
-	public void setFocusCilyndre() {
-		CilyndreTextField.requestFocus();
-	}
-
 	public void setFocusKilometrageDe() {
 		KilometrageDeTextField.requestFocus();
 	}
 
 	public void setFocusKilometrageA() {
 		KilometrageATextField.requestFocus();
+	}
+	
+	public void setFocusAcheterDe(){
+		acheterDeDatePicker.requestFocus();
+	}
+	
+	public void setFocusAcheterA(){
+		acheterADatePicker.requestFocus();
+	}
+	
+	public void setFocusVenduDe(){
+		venduDeDatePicker.requestFocus();
+	}
+	
+	public void setFocusVenduA(){
+		venduADatePicker.requestFocus();
 	}
 
 	@FXML
@@ -460,15 +489,6 @@ public class VehiculeListController implements Initializable {
 			}
 		}
 
-		if (!CilyndreTextField.getText().equals("")) {
-			if (premierElementRencontre == false) {
-				premierElementRencontre = true;
-				sqlRq += "";
-			} else {
-				sqlRq += "";
-			}
-		}
-
 		if (!KilometrageDeTextField.getText().equals("")) {
 			if (premierElementRencontre == false) {
 				premierElementRencontre = true;
@@ -601,7 +621,7 @@ public class VehiculeListController implements Initializable {
 					}
 				});
 
-		TransmissionCombo.valueProperty().addListener(
+	/*	TransmissionCombo.valueProperty().addListener(
 				new ChangeListener<String>() {
 					@Override
 					public void changed(
@@ -610,19 +630,7 @@ public class VehiculeListController implements Initializable {
 						RechercheChange();
 					}
 				});
-
-		CilyndreTextField.textProperty().addListener(
-				new ChangeListener<String>() {
-					@Override
-					public void changed(
-							ObservableValue<? extends String> observable,
-							String oldValue, String newValue) {
-						if (newValue != oldValue) {
-							RechercheChange();
-						}
-					}
-				});
-
+*/
 		KilometrageDeTextField.textProperty().addListener(
 				new ChangeListener<String>() {
 					@Override
