@@ -150,19 +150,8 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Label text="Est vendu" GridPane.columnIndex="5">
-                     <GridPane.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <ComboBox fx:id="estVenduCombo" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </GridPane.margin>
-                  </ComboBox>
                </children>
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
@@ -398,5 +387,7 @@
             </Label>
          </children>
       </GridPane>
+      <Label layoutX="768.0" layoutY="10.0" text="Est vendu" />
+      <ComboBox fx:id="estVenduCombo" layoutX="769.0" layoutY="26.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

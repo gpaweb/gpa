@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -94,10 +95,10 @@ public class VehiculeListController implements Initializable {
 	private Label venduALabel;
 	@FXML
 	private DatePicker venduADatePicker;
-	
+
 	@FXML
 	private HBox AddVehiculeHBox;
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Platform.runLater(new Runnable() {
@@ -233,8 +234,8 @@ public class VehiculeListController implements Initializable {
 			}
 		});
 
-	//	TransmissionCombo.getItems().addAll("Tous", "Automatique", "Manuelle");
-	//	TransmissionCombo.setValue("Tous");
+		TransmissionCombo.getItems().addAll("Tous", "Automatique", "Manuelle");
+		TransmissionCombo.setValue("Tous");
 
 		EstVenduCombo.getItems().addAll("Tous", "Oui", "Non");
 		EstVenduCombo.setValue("Tous");
@@ -270,6 +271,7 @@ public class VehiculeListController implements Initializable {
 			listAllVehicule = Vehicule
 					.listeDeVehicule(createSQLRequestForVehicule());
 			fillVehiculeTable(listAllVehicule);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -318,20 +320,20 @@ public class VehiculeListController implements Initializable {
 	public void setFocusKilometrageA() {
 		KilometrageATextField.requestFocus();
 	}
-	
-	public void setFocusAcheterDe(){
+
+	public void setFocusAcheterDe() {
 		acheterDeDatePicker.requestFocus();
 	}
-	
-	public void setFocusAcheterA(){
+
+	public void setFocusAcheterA() {
 		acheterADatePicker.requestFocus();
 	}
-	
-	public void setFocusVenduDe(){
+
+	public void setFocusVenduDe() {
 		venduDeDatePicker.requestFocus();
 	}
-	
-	public void setFocusVenduA(){
+
+	public void setFocusVenduA() {
 		venduADatePicker.requestFocus();
 	}
 
@@ -510,6 +512,61 @@ public class VehiculeListController implements Initializable {
 						+ KilometrageATextField.getText();
 			}
 		}
+		
+		if (acheterDeDatePicker.getValue() != null) {
+			// seulement le datepicker date de contient une valeur
+			if (premierElementRencontre == false) {
+				premierElementRencontre = true;
+				sqlRq += " WHERE fldDateAchat >= '"
+						+ acheterDeDatePicker.getValue() + "'";
+			} else {
+				sqlRq += " AND fldDateAchat >= '"
+						+ acheterDeDatePicker.getValue() + "'";
+			}
+
+		}
+
+		if (acheterADatePicker.getValue() != null) {
+			// seulement le datepicker date A contient une valeur
+			if (premierElementRencontre == false) {
+				premierElementRencontre = true;
+				sqlRq += " WHERE fldDateAchat <= '"
+						+ acheterADatePicker.getValue() + "'";
+			} else {
+				sqlRq += " AND fldDateAchat <= '"
+						+ acheterADatePicker.getValue() + "'";
+			}
+
+		}
+		
+		if (venduDeDatePicker.getValue() != null) {
+			// seulement le datepicker date de contient une valeur
+			EstVenduCombo.setValue("Oui");
+			if (premierElementRencontre == false) {
+				premierElementRencontre = true;
+				sqlRq += " WHERE fldDateVente >= '"
+						+ venduDeDatePicker.getValue() + "'";
+			} else {
+				sqlRq += " AND fldDateVente >= '"
+						+ venduDeDatePicker.getValue() + "'";
+			}
+
+		} 
+		
+		if (venduADatePicker.getValue() != null) {
+			// seulement le datepicker date de contient une valeur
+			EstVenduCombo.setValue("Oui");
+			if (premierElementRencontre == false) {
+				premierElementRencontre = true;
+				sqlRq += " WHERE fldDateVente <= '"
+						+ venduADatePicker.getValue() + "'";
+			} else {
+				sqlRq += " AND fldDateVente <= '"
+						+ venduADatePicker.getValue() + "'";
+			}
+
+		}
+		
 		return sqlRq;
 
 	}
@@ -621,7 +678,7 @@ public class VehiculeListController implements Initializable {
 					}
 				});
 
-	/*	TransmissionCombo.valueProperty().addListener(
+		TransmissionCombo.valueProperty().addListener(
 				new ChangeListener<String>() {
 					@Override
 					public void changed(
@@ -630,7 +687,7 @@ public class VehiculeListController implements Initializable {
 						RechercheChange();
 					}
 				});
-*/
+
 		KilometrageDeTextField.textProperty().addListener(
 				new ChangeListener<String>() {
 					@Override
@@ -654,6 +711,57 @@ public class VehiculeListController implements Initializable {
 						}
 					}
 				});
+
+		acheterDeDatePicker.valueProperty().addListener(
+				new ChangeListener<LocalDate>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends LocalDate> observable,
+							LocalDate oldValue, LocalDate newValue) {
+						RechercheChange();
+					}
+				});
+		
+		acheterADatePicker.valueProperty().addListener(
+				new ChangeListener<LocalDate>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends LocalDate> observable,
+							LocalDate oldValue, LocalDate newValue) {
+						RechercheChange();
+					}
+				});
+		
+		venduDeDatePicker.valueProperty().addListener(
+				new ChangeListener<LocalDate>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends LocalDate> observable,
+							LocalDate oldValue, LocalDate newValue) {
+						if(venduDeDatePicker.getValue() == null && venduADatePicker.getValue() == null){
+							EstVenduCombo.setValue("Tous");
+						}
+						RechercheChange();
+					}
+				});
+		
+		venduADatePicker.valueProperty().addListener(
+				new ChangeListener<LocalDate>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends LocalDate> observable,
+							LocalDate oldValue, LocalDate newValue) {
+						if(venduDeDatePicker.getValue() == null && venduADatePicker.getValue() == null){
+							EstVenduCombo.setValue("Tous");
+						}
+						RechercheChange();
+					}
+				});
+
 	}
 
 }

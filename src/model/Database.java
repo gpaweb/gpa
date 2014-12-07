@@ -44,7 +44,8 @@ public final class Database {
 					password);
 			return true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Database connection failed");
 			return false;
 			
 		} finally {

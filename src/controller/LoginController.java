@@ -89,7 +89,6 @@ public class LoginController implements Initializable {
 					SequentialTransition blinkThenFade = new SequentialTransition(
 							WarningLabel, fader);
 					blinkThenFade.play();
-					System.out.println("Database connexion failed");
 				}
 			}
 		});
