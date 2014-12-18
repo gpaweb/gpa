@@ -36,68 +36,38 @@ import model.vehicule.VehiculeToBeModified;
 
 public class VehiculeListController implements Initializable {
 
-	@FXML
-	private TableView<Vehicule> tableVehicule;
-	@FXML
-	private TableColumn<Vehicule, String> noStockCol;
-	@FXML
-	private TableColumn<Vehicule, String> noSerieCol;
-	@FXML
-	private TableColumn<Vehicule, Integer> anneeCol;
-	@FXML
-	private TableColumn<Vehicule, String> marqueCol;
-	@FXML
-	private TableColumn<Vehicule, String> modeleCol;
-	@FXML
-	private TableColumn<Vehicule, String> couleurCol;
-	@FXML
-	private TableColumn<Vehicule, String> transmissionCol;
-	@FXML
-	private TableColumn<Vehicule, Integer> kilometrageCol;
+	@FXML private TableView<Vehicule> tableVehicule;
+	@FXML private TableColumn<Vehicule, String> noStockCol;
+	@FXML private TableColumn<Vehicule, String> noSerieCol;
+	@FXML private TableColumn<Vehicule, Integer> anneeCol;
+	@FXML private TableColumn<Vehicule, String> marqueCol;
+	@FXML private TableColumn<Vehicule, String> modeleCol;
+	@FXML private TableColumn<Vehicule, String> couleurCol;
+	@FXML private TableColumn<Vehicule, String> transmissionCol;
+	@FXML private TableColumn<Vehicule, Integer> kilometrageCol;
 
 	private ObservableList<Vehicule> listAllVehicule;
 
-	@FXML
-	private TextField NoStockTextField;
-	@FXML
-	private TextField NoSerieTextField;
-	@FXML
-	private TextField AnneeFabTextField;
-	@FXML
-	private TextField MarqueTextField;
-	@FXML
-	private TextField ModeleTextField;
-	@FXML
-	private ComboBox EstVenduCombo;
-	@FXML
-	private TextField CouleurTextField;
-	@FXML
-	private TextField NoImmatricTextField;
-	@FXML
-	private ComboBox TransmissionCombo;
-	@FXML
-	private TextField KilometrageDeTextField;
-	@FXML
-	private TextField KilometrageATextField;
-	@FXML
-	private Label acheterDeLabel;
-	@FXML
-	private DatePicker acheterDeDatePicker;
-	@FXML
-	private Label acheterALabel;
-	@FXML
-	private DatePicker acheterADatePicker;
-	@FXML
-	private Label venduDeLabel;
-	@FXML
-	private DatePicker venduDeDatePicker;
-	@FXML
-	private Label venduALabel;
-	@FXML
-	private DatePicker venduADatePicker;
-
-	@FXML
-	private HBox AddVehiculeHBox;
+	@FXML private TextField NoStockTextField;
+	@FXML private TextField NoSerieTextField;
+	@FXML private TextField AnneeFabTextField;
+	@FXML private TextField MarqueTextField;
+	@FXML private TextField ModeleTextField;
+	@FXML private ComboBox EstVenduCombo;
+	@FXML private TextField CouleurTextField;
+	@FXML private TextField NoImmatricTextField;
+	@FXML private ComboBox TransmissionCombo;
+	@FXML private TextField KilometrageDeTextField;
+	@FXML private TextField KilometrageATextField;
+	@FXML private Label acheterDeLabel;
+	@FXML private DatePicker acheterDeDatePicker;
+	@FXML private Label acheterALabel;
+	@FXML private DatePicker acheterADatePicker;
+	@FXML private Label venduDeLabel;
+	@FXML private DatePicker venduDeDatePicker;
+	@FXML private Label venduALabel;
+	@FXML private DatePicker venduADatePicker;
+	@FXML private HBox AddVehiculeHBox;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

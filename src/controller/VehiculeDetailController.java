@@ -6,7 +6,6 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -22,7 +21,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 import model.CommonFunctions;
@@ -32,76 +30,42 @@ import model.entretien.Entretien;
 import model.vehicule.VehiculeToBeModified;
 
 public class VehiculeDetailController implements Initializable {
-	@FXML
-	private TableView<Entretien> tableEntretien;
-	@FXML
-	private TableColumn<Entretien, Date> dateEntretienCol;
-	@FXML
-	private TableColumn<Entretien, String> detaillantCol;
-	@FXML
-	private TableColumn<Entretien, String> descriptionCol;
-	@FXML
-	private TableColumn<Entretien, String> noFactureCol;
-	@FXML
-	private TableColumn<Entretien, BigDecimal> prixCol;
+	@FXML private TableView<Entretien> tableEntretien;
+	@FXML private TableColumn<Entretien, Date> dateEntretienCol;
+	@FXML private TableColumn<Entretien, String> detaillantCol;
+	@FXML private TableColumn<Entretien, String> descriptionCol;
+	@FXML private TableColumn<Entretien, String> noFactureCol;
+	@FXML private TableColumn<Entretien, BigDecimal> prixCol;
 	private ObservableList<Entretien> listeEntretiensVehicule;
 
-	@FXML
-	private TextField noStockTextField;
-	@FXML
-	private TextField noSerieTextField;
-	@FXML
-	private TextField anneeFabTextField;
-	@FXML
-	private TextField marqueTextField;
-	@FXML
-	private TextField modeleTextField;
-	@FXML
-	private TextField couleurTextField;
-	@FXML
-	private TextField noImmatricTextField;
-	@FXML
-	private TextField cilyndreTextField;
-	@FXML
-	private TextField kilometrageTextField;
-	@FXML
-	private ComboBox estVenduCombo;
-	@FXML
-	private ComboBox transmissionCombo;
-	@FXML
-	private TextField prixAchatTextField;
-	@FXML
-	private TextField prixVenteTextField;
-	@FXML
-	private TextField prixEntretiensTextField;
-	@FXML
-	private TextField profitPerteTextField;
-	@FXML
-	private Label totalEntretienLabel;
-	@FXML
-	private DatePicker vendeurDateDatePicker;
-	@FXML
-	private Label vendeurPrenomContactLabel;
-	@FXML
-	private Label vendeurNomLabel;
-	@FXML
-	private Label vendeurTelephoneLabel;
-	@FXML
-	private Label vendeurAdresseLabel;
-	@FXML
-	private Label vendeurVilleLabel;
-	@FXML
-	private Label vendeurProvinceLabel;
-	@FXML
-	private Label vendeurPayLabel;
-	@FXML
-	private Label vendeurCodePostalLabel;
-	@FXML
-	private Label vendeurCourrielLabel;
-	@FXML
-	private Label lblVendeurPrenomContact;
-	@FXML
-	private GridPane vendeurGridPane;
+	@FXML private TextField noStockTextField;
+	@FXML private TextField noSerieTextField;
+	@FXML private TextField anneeFabTextField;
+	@FXML private TextField marqueTextField;
+	@FXML private TextField modeleTextField;
+	@FXML private TextField couleurTextField;
+	@FXML private TextField noImmatricTextField;
+	@FXML private TextField cilyndreTextField;
+	@FXML private TextField kilometrageTextField;
+	@FXML private ComboBox estVenduCombo;
+	@FXML private ComboBox transmissionCombo;
+	@FXML private TextField prixAchatTextField;
+	@FXML private TextField prixVenteTextField;
+	@FXML private TextField prixEntretiensTextField;
+	@FXML private TextField profitPerteTextField;
+	@FXML private Label totalEntretienLabel;
+	@FXML private DatePicker vendeurDateDatePicker;
+	@FXML private Label vendeurPrenomContactLabel;
+	@FXML private Label vendeurNomLabel;
+	@FXML private Label vendeurTelephoneLabel;
+	@FXML private Label vendeurAdresseLabel;
+	@FXML private Label vendeurVilleLabel;
+	@FXML private Label vendeurProvinceLabel;
+	@FXML private Label vendeurPayLabel;
+	@FXML private Label vendeurCodePostalLabel;
+	@FXML private Label vendeurCourrielLabel;
+	@FXML private Label lblVendeurPrenomContact;
+	@FXML private GridPane vendeurGridPane;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
