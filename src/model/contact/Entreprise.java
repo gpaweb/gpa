@@ -47,9 +47,14 @@ public class Entreprise extends Intervenants {
 			// STEP 4: Executing a query
 			System.out.println("Creating statement");
 			stmt = conn.createStatement();
-			// String sql;
-			String sql = "Select * FROM Entreprises WHERE fldNoEntreprise = "
-					+ noEntreprise;
+			
+			String sql;
+			if (noEntreprise != "") {
+				sql = "Select * FROM Entreprises WHERE fldNoEntreprise = "
+						+ noEntreprise;
+			} else {
+				sql = "Select * FROM Entreprises";
+			}
 
 			System.out.println("SQL :" + sql);
 			rs = stmt.executeQuery(sql);

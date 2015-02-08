@@ -31,6 +31,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.contact.Entreprise;
+import model.contact.Particulier;
 import model.vehicule.Vehicule;
 import model.vehicule.VehiculeToBeModified;
 

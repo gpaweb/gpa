@@ -30,46 +30,85 @@ import model.entretien.Entretien;
 import model.vehicule.VehiculeToBeModified;
 
 public class VehiculeDetailController implements Initializable {
-	@FXML private TableView<Entretien> tableEntretien;
-	@FXML private TableColumn<Entretien, Date> dateEntretienCol;
-	@FXML private TableColumn<Entretien, String> detaillantCol;
-	@FXML private TableColumn<Entretien, String> descriptionCol;
-	@FXML private TableColumn<Entretien, String> noFactureCol;
-	@FXML private TableColumn<Entretien, BigDecimal> prixCol;
+	@FXML
+	private TableView<Entretien> tableEntretien;
+	@FXML
+	private TableColumn<Entretien, Date> dateEntretienCol;
+	@FXML
+	private TableColumn<Entretien, String> detaillantCol;
+	@FXML
+	private TableColumn<Entretien, String> descriptionCol;
+	@FXML
+	private TableColumn<Entretien, String> noFactureCol;
+	@FXML
+	private TableColumn<Entretien, BigDecimal> prixCol;
 	private ObservableList<Entretien> listeEntretiensVehicule;
+	private ObservableList<Particulier> listAllParticulier;
+	private ObservableList<Entreprise> listAllEntreprise;
 
-	@FXML private TextField noStockTextField;
-	@FXML private TextField noSerieTextField;
-	@FXML private TextField anneeFabTextField;
-	@FXML private TextField marqueTextField;
-	@FXML private TextField modeleTextField;
-	@FXML private TextField couleurTextField;
-	@FXML private TextField noImmatricTextField;
-	@FXML private TextField cilyndreTextField;
-	@FXML private TextField kilometrageTextField;
-	@FXML private ComboBox estVenduCombo;
-	@FXML private ComboBox transmissionCombo;
-	@FXML private TextField prixAchatTextField;
-	@FXML private TextField prixVenteTextField;
-	@FXML private TextField prixEntretiensTextField;
-	@FXML private TextField profitPerteTextField;
-	@FXML private Label totalEntretienLabel;
-	@FXML private DatePicker vendeurDateDatePicker;
-	@FXML private Label vendeurPrenomContactLabel;
-	@FXML private Label vendeurNomLabel;
-	@FXML private Label vendeurTelephoneLabel;
-	@FXML private Label vendeurAdresseLabel;
-	@FXML private Label vendeurVilleLabel;
-	@FXML private Label vendeurProvinceLabel;
-	@FXML private Label vendeurPayLabel;
-	@FXML private Label vendeurCodePostalLabel;
-	@FXML private Label vendeurCourrielLabel;
-	@FXML private Label lblVendeurPrenomContact;
-	@FXML private GridPane vendeurGridPane;
-	
+	@FXML
+	private TextField noStockTextField;
+	@FXML
+	private TextField noSerieTextField;
+	@FXML
+	private TextField anneeFabTextField;
+	@FXML
+	private TextField marqueTextField;
+	@FXML
+	private TextField modeleTextField;
+	@FXML
+	private TextField couleurTextField;
+	@FXML
+	private TextField noImmatricTextField;
+	@FXML
+	private TextField cilyndreTextField;
+	@FXML
+	private TextField kilometrageTextField;
+	@FXML
+	private ComboBox estVenduCombo;
+	@FXML
+	private ComboBox transmissionCombo;
+	@FXML
+	private TextField prixAchatTextField;
+	@FXML
+	private TextField prixVenteTextField;
+	@FXML
+	private TextField prixEntretiensTextField;
+	@FXML
+	private TextField profitPerteTextField;
+	@FXML
+	private Label totalEntretienLabel;
+	@FXML
+	private DatePicker vendeurDateDatePicker;
+	@FXML
+	private Label vendeurPrenomContactLabel;
+	@FXML
+	private Label vendeurNomLabel;
+	@FXML
+	private Label vendeurTelephoneLabel;
+	@FXML
+	private Label vendeurAdresseLabel;
+	@FXML
+	private Label vendeurVilleLabel;
+	@FXML
+	private Label vendeurProvinceLabel;
+	@FXML
+	private Label vendeurPayLabel;
+	@FXML
+	private Label vendeurCodePostalLabel;
+	@FXML
+	private Label vendeurCourrielLabel;
+	@FXML
+	private Label lblVendeurPrenomContact;
+	@FXML
+	private GridPane vendeurGridPane;
+
+	@FXML private ComboBox vendeurCombo;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		
+		
 		System.out.println(VehiculeToBeModified.toText());
 		estVenduCombo.getItems().addAll("Oui", "Non");
 		setFieldsWithVehiculeData();
@@ -88,6 +127,10 @@ public class VehiculeDetailController implements Initializable {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
+		listAllParticulier = Particulier.getAllParticulier();
+		System.out.println("test"+listAllParticulier);
+		vendeurCombo.setItems(listAllParticulier);
 	}
 
 	public void setFieldsWithVehiculeData() {
@@ -168,7 +211,6 @@ public class VehiculeDetailController implements Initializable {
 							return ret;
 						}
 					};
-
 					cell.setStyle("-fx-alignment: center-right;");
 					// cell.getStyleClass().add(("-fx-alignment: center-right;"));
 					// cell.getStyleClass().add(("-fx-padding: 5px;"));
@@ -184,58 +226,47 @@ public class VehiculeDetailController implements Initializable {
 	}
 
 	public void setIntervenantsForVehicule() {
-		/*if (VehiculeToBeModified.getTypeAcheteur() == "1") {
-			// Si l'acheteur est un particulier
-			Particulier particulier = Particulier
-					.getParticulier(VehiculeToBeModified.getNoAcheteur());
-		} else {
-			// Si l'acheteur est une entreprise
-			Entreprise entreprise = Entreprise
-					.getEntreprise(VehiculeToBeModified.getNoAcheteur());
 
-		}*/
-		
-		System.out.println("Type de vendeur :"
-				+ VehiculeToBeModified.getTypeVendeur());
 		if (VehiculeToBeModified.getTypeVendeur().equals("1")) {
 			// Si l'acheteur est un particulier
 			Particulier particulier = Particulier
 					.getParticulier(VehiculeToBeModified.getNoVendeur());
-			LocalDate tempDate = LocalDate.parse(VehiculeToBeModified.getDateAchat().toString());
+			LocalDate tempDate = LocalDate.parse(VehiculeToBeModified
+					.getDateAchat().toString());
 			vendeurDateDatePicker.setValue(tempDate);
 			lblVendeurPrenomContact.setText("Prénom");
 			vendeurPrenomContactLabel.setText(particulier.getPrenom());
 			vendeurNomLabel.setText(particulier.getNom());
-			vendeurTelephoneLabel
-					.setText(particulier.getTelephone());
+			vendeurTelephoneLabel.setText(particulier.getTelephone());
 			vendeurAdresseLabel.setText(particulier.getAdresse());
 			vendeurVilleLabel.setText(particulier.getVille());
 			vendeurProvinceLabel.setText(particulier.getProvince());
 			vendeurPayLabel.setText(particulier.getPay());
-			vendeurCodePostalLabel.setText(particulier
-					.getCodePostal());
+			vendeurCodePostalLabel.setText(particulier.getCodePostal());
 			vendeurCourrielLabel.setText(particulier.getEmail());
-		} else if (VehiculeToBeModified.getTypeVendeur().equals("2")){
+		} else if (VehiculeToBeModified.getTypeVendeur().equals("2")) {
 			// Si l'acheteur est une entreprise
 			Entreprise entreprise = Entreprise
 					.getEntreprise(VehiculeToBeModified.getNoVendeur());
-			LocalDate tempDate = LocalDate.parse(VehiculeToBeModified.getDateAchat().toString());
+			LocalDate tempDate = LocalDate.parse(VehiculeToBeModified
+					.getDateAchat().toString());
 			vendeurDateDatePicker.setValue(tempDate);
 
 			lblVendeurPrenomContact.setText("Contact");
 			vendeurPrenomContactLabel.setText(entreprise.getContact());
 			vendeurNomLabel.setText(entreprise.getNom());
-			vendeurTelephoneLabel
-					.setText(entreprise.getTelephone());
+			vendeurTelephoneLabel.setText(entreprise.getTelephone());
 			vendeurAdresseLabel.setText(entreprise.getAdresse());
 			vendeurVilleLabel.setText(entreprise.getVille());
 			vendeurProvinceLabel.setText(entreprise.getProvince());
 			vendeurPayLabel.setText(entreprise.getPay());
-			vendeurCodePostalLabel.setText(entreprise
-					.getCodePostal());
+			vendeurCodePostalLabel.setText(entreprise.getCodePostal());
 			vendeurCourrielLabel.setText(entreprise.getEmail());
-
-
+		}
+		
+		if(VehiculeToBeModified.isEstVendu() == true){
+			// Si le véhicule est vendu
+			
 		}
 	}
 
